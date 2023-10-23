@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.shop.mapper.AdminMapper">
+	<!-- 총 회원수 -->
+	<select id="getTotalMember" resultType="int">
+		select count(*) from member
+	</select>
+	
+	<!-- 상위 5개 회원 리스트 -->
+	<select id="memberList" resultType="com.shopping.shop.vo.MemberVO">
+		select m.memberNum, m.memberId, m.memberName, m.memberPhoneNumber,
+		m.memberEmail, m.point, g.codeName from member m
+		inner join grade g
+		on m.tier = g.code
+		order by memberNum desc limit 5
+	</select>
+	
+	<!-- 전체 회원 리스트 -->
+	<select id="allMemberList" resultType="com.shopping.shop.vo.MemberVO">
+	
+	</select>
+	
+	<!-- 검색 키워드 -->
+</mapper>
