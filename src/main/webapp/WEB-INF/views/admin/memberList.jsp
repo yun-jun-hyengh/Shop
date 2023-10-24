@@ -164,39 +164,68 @@
 									</tr>
 								</thead>
 								<tbody>
-
+								<c:forEach items="${list}" var="mList">
 									<tr>
-										<td>1000000</td>
-										<td>1000000</td>
-										<td>1000000</td>
-										<td>1000000</td>
-										<td>1000000</td>
-										<td>1000000</td>
-										<td>1000000</td>
-										<td>1000000</td>
+										<td>${mList.memberNum}</td>
+										<td>${mList.memberId}</td>
+										<td>${mList.memberName}</td>
+										<td>${mList.memberPhoneNumber}</td>
+										<td>${mList.memberEmail}</td>
+										<td>${mList.point}</td>
+										<td>${mList.adminCk}</td>
+										<td>${mList.codeName}</td>
 										<td><button class="btn btn-danger" id="updateBtn">수정</button></td>
 									</tr>
-
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
 
 					<!-- 페이지 버튼 -->
-					<!--  <div class="showback" align="center">
-						<div class="btn-group">
-							
-						</div> -->
+				<div class="showback" align="center">
+					<div class="btn-group">
+						<c:if test="${pagingMaker.prev}">
+								<button type="button" class="btn btn-theme03" onclick="goPage()">◀◀</button>
+							</c:if>
+
+							<c:if test="${pagingMaker.prev}">
+								<a
+									href="/shop/admin/memberlist${pagingMaker.makeFind(pagingMaker.startPage - 1)}">
+									<button type="button" class="btn btn-theme03">◀</button>
+								</a>
+							</c:if>
+
+							<c:forEach begin="${pagingMaker.startPage}" end="${pagingMaker.endPage}" var="pNum">
+								<a href="/shop/admin/memberlist${pagingMaker.makeFind(pNum)}">
+									<button type="button"
+										class="<c:out value="${pagingMaker.cri.page == pNum ? 'btn btn-theme':'btn btn-default'}"/>">${pNum}</button>
+								</a>
+							</c:forEach>
+
+							<c:if test="${pagingMaker.next && pagingMaker.endPage > 0}">
+								<a
+									href="/shop/admin/memberlist${pagingMaker.makeFind(pagingMaker.endPage + 1)}">
+									<button type="button" class="btn btn-theme03">▶</button>
+								</a>
+							</c:if>
+
+							<c:if test="${pagingMaker.next && pagingMaker.endPage > 0}">
+								<a
+									href="/shop/admin/memberlist${pagingMaker.makeFind(finalEndPage)}">
+									<button type="button" class="btn btn-theme03">▶▶</button>
+								</a>
+							</c:if>
+					</div> 
 				</div>
 				<div align="center">
 	                          <span class="col-md-12">
 	                          <select name="findType">
-								  <option value="">---------</option>
-								  <option value="N">이름</option>
-								  <option value="P">휴대폰 번호</option>
-								  <option value="NP">이름+휴대폰 번호</option>
+								  <option value="N" <c:out value="${fcri.findType == 'N' ? 'selected' : '' }"/>>이름</option>
+								  <option value="P" <c:out value="${fcri.findType == 'P' ? 'selected' : '' }"/>>휴대폰 번호</option>
+								  <option value="NP" <c:out value="${fcri.findType == 'NP' ? 'selected' : '' }"/>>이름+휴대폰 번호</option>
 								</select>
-								<input type="text" name="keyword" id="findword"/>
+								<input type="text" name="keyword" id="findword" value="${fcri.keyword}"/>
 								<button id="findBtn">검색</button>
 								</span>
 							</div>
@@ -205,4 +234,20 @@
 		</main>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	function goPage() {
+		location.href = "/shop/admin/memberlist?page=${pagingMaker.cri.page = 1}&numPerPage=${pagingMaker.cri.numPerPage}";
+	}
+	
+	$(document).ready(function(){
+		$("#findBtn").on("click", function(e){
+			self.location = "/shop/admin/memberlist" + "${pagingMaker.makeURI(1)}"
+						+"&findType="+$("select option:selected").val()
+						+"&keyword="+$("#findword").val();
+		});
+	});
+</script>
 </html>

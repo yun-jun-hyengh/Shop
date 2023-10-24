@@ -17,10 +17,50 @@
 		order by memberNum desc limit 5
 	</select>
 	
+	
 	<!-- 전체 회원 리스트 -->
+	<select id="memberCriteria" resultType="com.shopping.shop.vo.MemberVO">
+		select m.memberNum, m.memberId, m.memberName, m.memberPhoneNumber,
+		m.memberEmail, m.point, m.adminCk, g.codeName from member m
+		inner join grade g
+		on m.tier = g.code
+		order by m.memberNum limit #{startPage}, #{numPerPage}
+	</select>
+	
+	<!-- 회원 검색 리스트 -->
 	<select id="allMemberList" resultType="com.shopping.shop.vo.MemberVO">
-		
+		<![CDATA[
+			select m.memberNum, m.memberId, m.memberName, m.memberPhoneNumber,
+			m.memberEmail, m.point, m.adminCk, g.codeName from member m
+			inner join grade g
+			on m.tier = g.code
+			]]>
+			<include refid="findSql"></include>
+		<![CDATA[
+			order by m.memberNum limit #{startPage}, #{numPerPage}
+		]]>
+	</select>
+	
+	<select id="findMemberCountData" resultType="int">
+		<![CDATA[
+			select count(memberNum) from member where memberNum > 0
+		]]>
+		<include refid="findSql"></include>
 	</select>
 	
 	<!-- 검색 키워드  설정-->
+	<sql id="findSql">
+		<if test="findType != null">
+			<if test="findType == 'N'.toString()">
+				and memberName like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="findType == 'P'.toString()">
+				and memberPhoneNumber like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="findType == 'NP'.toString()">
+				and (memberName like CONCAT('%', #{keyword}, '%') 
+				or memberPhoneNumber like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
 </mapper>

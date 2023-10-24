@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopping.shop.service.AdminService;
 import com.shopping.shop.service.VisitCountService;
+import com.shopping.shop.vo.FindCriteria;
 import com.shopping.shop.vo.PageCriteria;
 import com.shopping.shop.vo.PagingMaker;
 
@@ -46,7 +48,16 @@ public class AdminController {
 	
 	// 회원 리스트
 	@GetMapping("/memberlist")
-	public String memberlist() throws Exception {
+	public String memberlist(@ModelAttribute("fcri") FindCriteria fcri, Model model) throws Exception {
+		//model.addAttribute("list", adminService.memberCriteria(fcri));
+		model.addAttribute("list", adminService.allMemberList(fcri));
+		
+		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker.setCri(fcri);
+		
+		pagingMaker.setTotalData(adminService.findMemberCountData(fcri));
+		model.addAttribute("pagingMaker", pagingMaker);
+		model.addAttribute("finalEndPage", pagingMaker.getFinalEndPage());
 		return "admin/memberList";
 	}
 	
