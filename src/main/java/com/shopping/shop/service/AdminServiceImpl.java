@@ -1,5 +1,6 @@
 package com.shopping.shop.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MemberVO> memberCriteria(PageCriteria pCria) throws Exception {
 		return adminMapper.memberCriteria(pCria);
+	}
+
+	@Override
+	public void gradeUpdate(HashMap<String, Object> list) throws Exception {
+		adminMapper.gradeUpdate(list);
 	}
 
 }

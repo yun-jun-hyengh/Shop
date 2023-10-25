@@ -174,7 +174,7 @@
 										<td>${mList.point}</td>
 										<td>${mList.adminCk}</td>
 										<td>${mList.codeName}</td>
-										<td><button class="btn btn-danger" id="updateBtn">수정</button></td>
+										<td><button class="btn btn-danger" onclick="updateBtn(${mList.memberNum}, 1)">수정</button></td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -249,5 +249,21 @@
 						+"&keyword="+$("#findword").val();
 		});
 	});
+	
+	// 회원등급 수정 버튼 
+	function updateBtn(memberNum, adminCk) {
+		console.log("버튼클릭됨");
+		console.log(memberNum);
+		console.log(adminCk);
+		$.ajax({
+			url : "/shop/admin/roleModify?memberNum=" + memberNum + "&adminCk=" + adminCk,
+			type : "post",
+			success : function(data){
+				console.log(data);
+				alert("회원 권한이 변경되었습니다.");
+				history.go(0);
+			}
+		});
+	}
 </script>
 </html>

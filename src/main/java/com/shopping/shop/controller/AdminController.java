@@ -1,11 +1,17 @@
 package com.shopping.shop.controller;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shopping.shop.service.AdminService;
 import com.shopping.shop.service.VisitCountService;
@@ -59,6 +65,27 @@ public class AdminController {
 		model.addAttribute("pagingMaker", pagingMaker);
 		model.addAttribute("finalEndPage", pagingMaker.getFinalEndPage());
 		return "admin/memberList";
+	}
+	
+	// 회원 권한 수정 
+	@PostMapping("/roleModify")
+	@ResponseBody
+	public int roleMod(HttpServletRequest request) throws Exception {
+		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
+		int adminCk = Integer.parseInt(request.getParameter("adminCk"));
+		System.out.println(memberNum);
+		System.out.println(adminCk);
+		String changeNum = Integer.toString(memberNum);
+		String changeCk = Integer.toString(adminCk);
+		
+		if(!changeNum.equals("") && !changeCk.equals("")) {
+			HashMap<String, Object> list = new HashMap<String, Object>();
+			list.put("memberNum", memberNum);
+			list.put("adminCk", adminCk);
+			adminService.gradeUpdate(list);
+			return 1;
+		}
+		return 0;
 	}
 	
 }

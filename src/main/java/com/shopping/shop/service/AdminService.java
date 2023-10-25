@@ -1,5 +1,6 @@
 package com.shopping.shop.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.shopping.shop.vo.FindCriteria;
@@ -17,4 +18,6 @@ public interface AdminService {
 	public List<MemberVO> allMemberList(FindCriteria findcri) throws Exception;
 	
 	public int findMemberCountData(FindCriteria findcri) throws Exception;
+	
+	public void gradeUpdate(HashMap<String, Object> list) throws Exception;
 }

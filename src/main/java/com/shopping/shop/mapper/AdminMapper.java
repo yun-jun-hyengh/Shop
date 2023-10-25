@@ -1,5 +1,6 @@
 package com.shopping.shop.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +21,6 @@ public interface AdminMapper {
 	public List<MemberVO> allMemberList(FindCriteria findcri) throws Exception;
 	
 	public int findMemberCountData(FindCriteria findcri) throws Exception;
+	
+	public void gradeUpdate(HashMap<String, Object> list) throws Exception;
 }

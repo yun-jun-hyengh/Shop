@@ -63,4 +63,9 @@
 			</if>
 		</if>
 	</sql>
+	
+	<!-- 회원권한변경 -->
+	<update id="gradeUpdate">
+		update member set adminCk = #{adminCk} where memberNum = #{memberNum}
+	</update>
 </mapper>
