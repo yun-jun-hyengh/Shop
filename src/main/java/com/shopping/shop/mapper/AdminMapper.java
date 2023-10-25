@@ -23,4 +23,6 @@ public interface AdminMapper {
 	public int findMemberCountData(FindCriteria findcri) throws Exception;
 	
 	public void gradeUpdate(HashMap<String, Object> list) throws Exception;
+	
+	public List<MemberVO> selectExcel(MemberVO memberVo) throws Exception;
 }

@@ -68,4 +68,16 @@
 	<update id="gradeUpdate">
 		update member set adminCk = #{adminCk} where memberNum = #{memberNum}
 	</update>
+	
+	<!-- 회원 엑셀 다운로드 -->
+	<select id="selectExcel" parameterType="com.shopping.shop.vo.MemberVO" resultType="com.shopping.shop.vo.MemberVO">
+		select m.memberNum, m.memberId, m.memberName, m.memberPhoneNumber,
+		m.memberEmail, m.point,  
+		case when m.adminCk = 1 then '관리자'
+			 when m.adminCk = 0 then '일반사용자'
+		end as 'adminCk', g.codeName, m.address1, m.address2, m.address3
+		from member m
+		inner join grade g
+		on m.tier = g.code
+	</select>
 </mapper>
