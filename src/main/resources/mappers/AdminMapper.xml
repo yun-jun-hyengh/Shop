@@ -24,7 +24,7 @@
 		m.memberEmail, m.point, m.adminCk, g.codeName from member m
 		inner join grade g
 		on m.tier = g.code
-		order by m.memberNum limit #{startPage}, #{numPerPage}
+		order by m.memberNum desc limit #{startPage}, #{numPerPage}
 	</select>
 	
 	<!-- 회원 검색 리스트 -->
@@ -37,7 +37,7 @@
 			]]>
 			<include refid="findSql"></include>
 		<![CDATA[
-			order by m.memberNum limit #{startPage}, #{numPerPage}
+			order by m.memberNum desc limit #{startPage}, #{numPerPage}
 		]]>
 	</select>
 	
