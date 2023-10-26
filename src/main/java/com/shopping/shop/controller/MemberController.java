@@ -189,4 +189,10 @@ public class MemberController {
 			return "member/findPwSuccess";
 		}
 	}
+	
+	// 마이페이지 이동
+	@GetMapping("/mypage")
+	public String myPage() {
+		return "member/myPage";
+	}
 }

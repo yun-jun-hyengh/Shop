@@ -32,7 +32,7 @@
 				<label class="form-label" for="id">아이디</label> 
 			</div>
 			<div class="col-sm-12 text-left">
-				<input class="form-control" style="height:45px" type="text" name="memberId" id="memberId" /><br>
+				<input class="form-control" style="height:45px" type="text" name="memberId" id="memberId" onkeypress="enterLog(event)" /><br>
 			</div>
 		</div>
 		
@@ -41,7 +41,7 @@
 				<label class="form-label" for="pwd">비밀번호</label> 
 			</div>
 			<div class="col-sm-12 text-left">
-				<input class="form-control" style="height:45px" type="password" name="memberPw" id="memberPw" /><br><br>
+				<input class="form-control" style="height:45px" type="password" name="memberPw" id="memberPw" onkeypress="enterLog(event)"/><br><br>
 			</div>
 			
 		</div>
@@ -97,6 +97,14 @@
 	$("#findPwBtn").click(function(){
 		location="/shop/member/findPw";
 	});
+	
+	function enterLog(e){
+		var memberId = document.getElementById("memberId");
+		var memberPw = document.getElementById("memberPw");
+		if(e.keyCode == 13){
+			$("#login_button").click();
+		}
+	}
 	
 </script>
 </html>

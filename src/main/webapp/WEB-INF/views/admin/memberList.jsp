@@ -145,10 +145,11 @@
 				
 				<div class="card mb-4">
 					<div class="card-header">
-						
-						<span style="float: right;">
-							<button class="btn btn-outline-secondary">EXCEL</button>
-						</span>
+						<form action="/shop/admin/excelDown" method="POST">
+							<span style="float: right;">
+								<input type="submit" class="btn btn-outline-secondary" value="EXCEL"/>
+							</span>
+						</form>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">

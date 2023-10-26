@@ -3,6 +3,7 @@ package com.shopping.shop.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shopping.shop.service.AdminService;
 import com.shopping.shop.service.VisitCountService;
 import com.shopping.shop.vo.FindCriteria;
+import com.shopping.shop.vo.MemberVO;
 import com.shopping.shop.vo.PageCriteria;
 import com.shopping.shop.vo.PagingMaker;
 
@@ -87,5 +89,16 @@ public class AdminController {
 		}
 		return 0;
 	}
+	
+	// 회원 엑셀 다운로드
+	@PostMapping("/excelDown")
+	@ResponseBody
+	public void excelDown(@ModelAttribute MemberVO memberVO,
+			HttpServletResponse response, HttpServletRequest request) throws Exception {
+		adminService.excelDown(memberVO, response);
+	}
+	
+	
+	
 	
 }
