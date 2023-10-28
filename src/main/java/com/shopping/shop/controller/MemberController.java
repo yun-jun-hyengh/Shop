@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -201,4 +203,16 @@ public class MemberController {
 	public String memberUpdateView(HttpSession session) {
 		return "member/memberUpdateView";
 	}
+	
+	// 정보수정 
+	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
+	public String memberUpdate(MemberVO memberVO, HttpSession session) throws Exception {
+		String password = memberVO.getMemberPw();
+		password = pwEncoder.encode(password);
+		memberVO.setMemberPw(password);
+		memberService.updateMember(memberVO);
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 }

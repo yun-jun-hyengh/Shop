@@ -71,6 +71,8 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.findPwCheck(memberVO);
 	}
 
-	
-
+	@Override
+	public void updateMember(MemberVO memberVO) throws Exception {
+		membermapper.updateMember(memberVO);
+	}
 }

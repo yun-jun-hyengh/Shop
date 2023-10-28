@@ -28,4 +28,7 @@ public interface MemberMapper {
 	public int findPw(@Param("memberPw") String memberPw, @Param("memberEmail") String memberEmail, 
 			@Param("memberId") String memberId) throws Exception;
 	
+	// 회원정보수정 
+	public void updateMember(MemberVO memberVO) throws Exception;
+	
 }

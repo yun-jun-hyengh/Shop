@@ -15,7 +15,7 @@
 	
 	<!-- 로그인 -->
 	<select id="memberLogin" resultType="com.shopping.shop.vo.MemberVO">
-		select m.memberId, m.memberPw, m.memberName, m.memberPhoneNumber, 
+		select m.memberNum, m.memberId, m.memberPw, m.memberName, m.memberPhoneNumber, 
 		m.memberEmail, m.point, m.adminCk, g.codeName, m.address1, m.address2, m.address3 
 		from member as m join grade as g
 		on m.tier = g.code where memberId = #{memberId}
@@ -38,6 +38,12 @@
 		and memberId = #{memberId} 
 	</select>
 	
-	<!-- 내 정보 보기 -->
+	<!-- 내 정보 수정 -->
+	<update id="updateMember" parameterType="com.shopping.shop.vo.MemberVO">
+		update member 
+		set memberPw=#{memberPw}, memberName=#{memberName}, memberPhoneNumber=#{memberPhoneNumber},
+		memberEmail=#{memberEmail}, address1=#{address1}, address2=#{address2}, address3=#{address3}
+		where memberId=#{memberId}
+	</update>
 	
 </mapper>

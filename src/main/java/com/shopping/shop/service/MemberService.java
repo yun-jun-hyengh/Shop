@@ -21,4 +21,7 @@ public interface MemberService {
 	public void findPw(String memberEmail, String memberId) throws Exception;
 	
 	public int findPwCheck(MemberVO memberVO) throws Exception;
+	
+	// 회원정보수정 
+	public void updateMember(MemberVO memberVO) throws Exception;
 }

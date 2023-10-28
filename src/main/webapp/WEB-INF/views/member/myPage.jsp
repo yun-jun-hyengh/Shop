@@ -25,12 +25,12 @@ p {
 			</div>
 			<br>
 			<div class="list-group">
-				<a href="#" class="list-group-item list-group-item-action">Jquery</a>
-				<a href="#" class="list-group-item list-group-item-action">API</a>
+				<a href="#" class="list-group-item list-group-item-action">QnA</a>
+				<a href="#" class="list-group-item list-group-item-action">공지사항</a>
 			</div>
 			<br>
 			<div class="list-group">
-				<a href="#" class="list-group-item list-group-item-action">공지사항</a>
+				<a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>
 				<a href="/shop/member/memberUpdatePage" class="list-group-item list-group-item-action">회원정보수정</a>
 			</div>
 		</div>
