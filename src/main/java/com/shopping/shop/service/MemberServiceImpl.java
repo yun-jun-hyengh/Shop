@@ -75,4 +75,15 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMember(MemberVO memberVO) throws Exception {
 		membermapper.updateMember(memberVO);
 	}
+
+	@Override
+	public void deleteMember(String memberId) throws Exception {
+		membermapper.deleteMember(memberId);
+	}
+
+	@Override
+	public int pwCheck(MemberVO vo) throws Exception {
+		int result = membermapper.pwCheck(vo);
+		return result;
+	}
 }

@@ -31,4 +31,9 @@ public interface MemberMapper {
 	// 회원정보수정 
 	public void updateMember(MemberVO memberVO) throws Exception;
 	
+	// 회원탈퇴 
+	public void deleteMember(String memberId) throws Exception;
+	
+	// 비밀번호 체크
+	public int pwCheck(MemberVO vo) throws Exception;
 }

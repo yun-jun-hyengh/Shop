@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -213,6 +214,24 @@ public class MemberController {
 		memberService.updateMember(memberVO);
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	// 회원탈퇴 페이지 이동 
+	@GetMapping("/memberDeletePage")
+	public String memberDeleteView() {
+		return "member/memberDeleteView";
+	}
+	
+	@PostMapping("/pwCheck")
+	@ResponseBody
+	public int pwCheck(MemberVO vo) throws Exception {
+		MemberVO login = memberService.memberLogin(vo);
+		boolean pwdChk = pwEncoder.matches(vo.getMemberPw(), login.getMemberPw());
+		int result = 0;
+		if(pwdChk == true) {
+			result = memberService.pwCheck(vo);
+		}
+		return result;
 	}
 	
 }

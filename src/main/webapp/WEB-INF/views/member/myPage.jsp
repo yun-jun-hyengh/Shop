@@ -30,7 +30,7 @@ p {
 			</div>
 			<br>
 			<div class="list-group">
-				<a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>
+				<a href="/shop/member/memberDeletePage" class="list-group-item list-group-item-action">회원탈퇴</a>
 				<a href="/shop/member/memberUpdatePage" class="list-group-item list-group-item-action">회원정보수정</a>
 			</div>
 		</div>

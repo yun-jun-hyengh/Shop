@@ -46,4 +46,16 @@
 		where memberId=#{memberId}
 	</update>
 	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember">
+		<![CDATA[
+			delete from member where memberId=#{memberId}
+		]]>
+	</delete>
+	
+	<!-- 비밀번호 체크 -->
+	<select id="pwCheck" resultType="int">
+		select count(*) from member where memberId = #{memberId}
+	</select>
+	
 </mapper>
