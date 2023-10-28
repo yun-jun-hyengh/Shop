@@ -137,10 +137,10 @@
           </div>
           
          
-         <div class="form-group">
-            <div class="col-sm-6 text-center">
-	            <input type="button" value="회원가입" class="btn btn-success btn-lg" id="btn_submit">
-	            <input type="reset" value="가입취소" class="btn btn-warning btn-lg">
+         <div class="text-center">
+            <div class="col-sm-9">
+	            <input type="button" value="회원가입" class="btn btn-success btn-lg" id="btn_submit">&nbsp;
+	     		<input type="reset" value="가입취소" class="btn btn-warning btn-lg">
             </div>
          </div>
          

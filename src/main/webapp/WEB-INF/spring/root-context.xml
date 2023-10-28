@@ -59,9 +59,29 @@
 		</property>
 	</bean>
 	
+	<!-- Spring Quartz Start -->
+	<bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="visitQuartzJob"/>
+		<property name="targetMethod" value="visitDelete"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+	
+	<!-- Trigger -->
+	<bean id="testJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="testJob"/>
+		<property name="cronExpression" value="0 15 10 L * ?"/>
+	</bean>
+	
+	<!-- Scheduler -->
+	<bean id="testJobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list><ref bean="testJobTrigger"/></list>
+		</property>
+	</bean>
 	
 	<mybatis-spring:scan base-package="com.shopping.shop.mapper"/>
 	<context:component-scan base-package="com.shopping.shop.vo"/>
 	<context:component-scan base-package="com.shopping.shop.service"/>
 	<context:component-scan base-package="com.shopping.shop.config"/>
+	<context:component-scan base-package="com.shopping.shop.quartz"/>
 </beans>

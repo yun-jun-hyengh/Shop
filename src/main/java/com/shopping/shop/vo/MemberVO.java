@@ -1,5 +1,7 @@
 package com.shopping.shop.vo;
 
+import java.util.Date;
+
 public class MemberVO {
 	private int memberNum; // 시퀀스
 	private String memberId; // 아이디
@@ -13,6 +15,7 @@ public class MemberVO {
 	private String address1; // 우편번호
 	private String address2; // 주소
 	private String address3; // 상세주소 
+	private Date joinData;
 	
 	private String code;
 	private String codeName;
@@ -99,6 +102,12 @@ public class MemberVO {
 	}
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
+	}
+	public Date getJoinData() {
+		return joinData;
+	}
+	public void setJoinData(Date joinData) {
+		this.joinData = joinData;
 	}
 	
 	

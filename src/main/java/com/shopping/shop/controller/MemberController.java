@@ -192,7 +192,13 @@ public class MemberController {
 	
 	// 마이페이지 이동
 	@GetMapping("/mypage")
-	public String myPage() {
+	public String myPage(HttpSession session) {
 		return "member/myPage";
+	}
+	
+	// 내 정보 보기 
+	@GetMapping("/memberUpdatePage")
+	public String memberUpdateView(HttpSession session) {
+		return "member/memberUpdateView";
 	}
 }
