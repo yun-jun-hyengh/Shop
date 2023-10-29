@@ -98,6 +98,24 @@
 				success : function(data){
 					//console.log($("#memberId").val());
 					//console.log(data);
+					var memberId = $("#memberId").val();
+					if(data == 0){
+						alert("패스워드가 틀렸습니다.");
+						return;
+					} else {
+						$.ajax({
+							url : "/shop/member/memberDelete?memberId=" + memberId,
+							type : "POST",
+							dataType : "json",
+							success : function(e){
+								//console.log(e);
+								if(e == 1){
+									alert("회원탈퇴 하셨습니다. 이용해 주셔서 감사합니다.");
+									location="/shop";
+								}
+							}
+						});
+					}
 				}
 			});
 		});

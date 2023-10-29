@@ -234,4 +234,16 @@ public class MemberController {
 		return result;
 	}
 	
+	@PostMapping("/memberDelete")
+	@ResponseBody
+	public int memberDel(@RequestParam("memberId") String memberId,
+			HttpSession session) throws Exception {
+		System.out.println(memberId);
+		int result = memberService.deleteMember(memberId);
+		if(result == 1) {
+			session.invalidate();
+			return 1;
+		}
+		return 0;
+	}
 }
