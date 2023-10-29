@@ -23,7 +23,7 @@
      
     <div class="col-xs-12 col-sm-12">
     <h2>&nbsp;</h2> 
-    <h2 class="text-center">회원가입</h2>
+    <h2 class="text-center">회원정보수정</h2>
     </div>        
      
     <div class="col-xs-3 col-sm-3"></div>   
