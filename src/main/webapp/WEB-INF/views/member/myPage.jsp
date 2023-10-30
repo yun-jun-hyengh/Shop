@@ -26,7 +26,7 @@ p {
 			<br>
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action">QnA</a>
-				<a href="#" class="list-group-item list-group-item-action">공지사항</a>
+				<a href="/shop/notice/noticelist" class="list-group-item list-group-item-action">공지사항</a>
 			</div>
 			<br>
 			<div class="list-group">
