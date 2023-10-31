@@ -27,8 +27,6 @@
 								<th>조회수</th>
 							</tr>
 						</thead>
-						
-						
 							<tr>
 								<td>번호</td>
 								<td>제목</td>
@@ -36,14 +34,12 @@
 								<td>등록일</td>
 								<th>조회수</th>
 							</tr>
-						
-						
 					</table>
 					
 					
 					<div class="row">
 						<span style="float: right; margin: 10px; padding: 10px;">
-							<a href="#" class="btn btn-primary">글쓰기</a>
+							<a href="/shop/notice/noticewrite" class="btn btn-primary">글쓰기</a>
 						</span>
 					</div>
 					

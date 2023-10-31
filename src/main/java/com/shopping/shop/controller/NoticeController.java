@@ -12,4 +12,10 @@ public class NoticeController {
 	public String list() throws Exception {
 		return "notice/noticeList";
 	}
+	
+	@GetMapping("/noticewrite")
+	public String write() throws Exception {
+		return "notice/write";
+	}
+	
 }
