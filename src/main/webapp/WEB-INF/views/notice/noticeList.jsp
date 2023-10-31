@@ -14,7 +14,7 @@
 <body>
 	<%@include file="../include/header.jsp" %>
 	<div class="row">
-		<div class="col-md-10" style="margin:35px; padding:5px;">
+		<div class="col-md-10" style="margin:45px; padding:25px;">
 			<section id="container">
 				<form role="form" method="get">
 					<table class="table table-hover">
@@ -24,6 +24,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
+								<th>조회수</th>
 							</tr>
 						</thead>
 						
@@ -33,10 +34,24 @@
 								<td>제목</td>
 								<td>작성자</td>
 								<td>등록일</td>
+								<th>조회수</th>
 							</tr>
 						
 						
 					</table>
+					
+					
+					<div class="row">
+						<span style="float: right; margin: 10px; padding: 10px;">
+							<a href="#" class="btn btn-primary">글쓰기</a>
+						</span>
+					</div>
+					
+					<div class="col-md-offset-3">
+						<!-- 페이징 -->
+					</div>
+					
+						
 					<div class="search row">
 						<div class="col-xs-2 col-sm-2">
 							<select name="searchType" class="form-control">
@@ -59,11 +74,8 @@
 						 
 						
 					</div>
-					<div class="col-md-offset-3">
-						<!-- 페이징 -->
-					</div>
 				</form>
-				</section>
+			</section>
 		</div>
 	</div>
 </body>
