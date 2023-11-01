@@ -31,6 +31,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/admin/**"></mapping>
+			<mapping path="/notice/noticewrite"></mapping>
 			<beans:bean id="AdminInterceptor" class="com.shopping.shop.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
