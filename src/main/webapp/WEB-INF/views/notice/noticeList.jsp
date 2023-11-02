@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,13 +29,15 @@
 								<th>조회수</th>
 							</tr>
 						</thead>
+						<c:forEach items="${list}" var="bvo" varStatus="i">
 							<tr>
-								<td>번호</td>
-								<td>제목</td>
-								<td>작성자</td>
-								<td>등록일</td>
-								<th>조회수</th>
+								<td>${bvo.bno}</td>
+								<td>${bvo.title}</td>
+								<td>${bvo.writer}</td>
+								<td><fmt:formatDate pattern="yyyy/MM/dd" value="${bvo.regdate}"/></td>
+								<th>${bvo.hit}</th>
 							</tr>
+						</c:forEach>
 					</table>
 					
 					

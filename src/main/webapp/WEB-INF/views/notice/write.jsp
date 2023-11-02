@@ -144,7 +144,7 @@
 		
 		<div id="layoutSidenav_content">
 			<main class="col-md-10 ms-sm-auto row">
-				<form class="col d-block" method="POST" enctype="multipart/form-data">
+				<form class="col d-block" method="POST" enctype="multipart/form-data" id="frm">
 					<div class="row ms-sm-auto">
 						<div class="col-md-2"></div>
 						<div class="col-md-8" style="width: 86.66666667%;">
@@ -153,15 +153,15 @@
 								<table class="table table-striped">
 									<tr>
 										<td class="align-middle text-center">제목</td>
-										<td><input type="text"  class="form-control" name="title"></td>
+										<td><input type="text"  class="form-control" name="title" id="title"></td>
 									</tr>
 									<tr>
 										<td class="align-middle text-center">작성자</td>
-										<td><input type="text"  class="form-control" name="writer" value="${member.name}"></td>
+										<td><input type="text"  class="form-control" name="writer" id="writer" value="${member.memberName}" readonly="readonly"></td>
 									</tr>                 
 									<tr>
 										<td class="align-middle text-center">글내용</td>
-										<td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td>
+										<td><textarea rows="10" cols="50" name="content" id="content" class="form-control"></textarea></td>
 									</tr>
 									<tr>
 										<td class="align-middle text-center">파일업로드</td>
@@ -176,8 +176,8 @@
 									</tr>
 									<tr>
 										<td colspan="2"  class="text-center">
-											<input type="submit" value="글쓰기" class="btn " style="background-color:rgb(210,244,234) ;">
-											<input type="reset" value="다시작성" class="btn" style="background-color:rgb(210,244,234) ;" > 
+											<input type="button" value="글쓰기" class="btn" id="writeBtn" style="background-color:rgb(210,244,234) ;">
+											<input type="button" value="다시작성" class="btn" id="backBtn" style="background-color:rgb(210,244,234) ;" > 
 											
 										</td>
 									</tr>
@@ -188,4 +188,44 @@
 			</main>
 		</div>
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).on("click", "#writeBtn", function(e){
+		var title = $("#title").val();
+		var writer = $("#writer").val();
+		var content = $("#content").val();
+		
+		if(title == ""){
+			alert("제목을 입력해 주세요");
+			return;
+		}
+		
+		if(content == ""){
+			alert("내용을 입력해 주세요");
+			return;
+		}
+		
+		$("#title").val(title);
+		$("#writer").val(writer);
+		$("#content").val(content);
+		
+		var formData = $("#frm").serialize();
+		
+		$.ajax({
+			url : "/shop/notice/noticewrite",
+			data : formData,
+			dataType : "text",
+			type : "POST",
+			success : function(data){
+				if(data == "ok"){
+					alert("공지사항 등록이 완료되었습니다.");
+					location.href = "/shop/notice/noticelist";
+				}
+			}
+		});
+	});
+</script>
 </html>

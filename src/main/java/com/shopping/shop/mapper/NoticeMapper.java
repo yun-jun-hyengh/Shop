@@ -1,5 +1,7 @@
 package com.shopping.shop.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shopping.shop.vo.NoticeVO;
@@ -7,5 +9,7 @@ import com.shopping.shop.vo.NoticeVO;
 @Mapper
 public interface NoticeMapper {
 	
-	public void noticeInsert(NoticeVO vo) throws Exception;
+	public int noticeInsert(NoticeVO vo) throws Exception;
+	
+	public List<NoticeVO> noticeList() throws Exception;
 }

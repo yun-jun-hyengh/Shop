@@ -7,4 +7,17 @@
 		insert into notice(title, content, writer, regdate)
 		values(#{title}, #{content}, #{writer}, now())
 	</insert>
+	
+	<select id="noticeList" resultType="com.shopping.shop.vo.NoticeVO">
+		select bno, title, writer, regdate, hit from notice
+		order by bno desc
+	</select>
+	
+	<select id="noticeRead" resultType="com.shopping.shop.vo.NoticeVO">
+		select bno, title, content, writer, regdate, hit from notice
+		where bno = #{bno}
+	</select>
+	
+	
+	
 </mapper>
