@@ -17,6 +17,9 @@
 	<%@include file="../include/header.jsp" %>
 	<div class="row">
 		<div class="col-md-10" style="margin:45px; padding:25px;">
+			<div class="form-group text-center">
+				<h2>공지사항</h2>
+			</div>
 			<section id="container">
 				<form role="form" method="get">
 					<table class="table table-hover">
@@ -32,7 +35,7 @@
 						<c:forEach items="${list}" var="bvo" varStatus="i">
 							<tr>
 								<td>${bvo.bno}</td>
-								<td>${bvo.title}</td>
+								<td><a href="/shop/notice/noticeRead?bno=${bvo.bno}">${bvo.title}</a></td>
 								<td>${bvo.writer}</td>
 								<td><fmt:formatDate pattern="yyyy/MM/dd" value="${bvo.regdate}"/></td>
 								<th>${bvo.hit}</th>
@@ -78,5 +81,6 @@
 			</section>
 		</div>
 	</div>
+	<%@include file="../include/footer.jsp" %>
 </body>
 </html>

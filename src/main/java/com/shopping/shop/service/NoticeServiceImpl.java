@@ -25,4 +25,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.noticeList();
 	}
 
+	@Override
+	public NoticeVO noticeRead(int bno) throws Exception {
+		return noticeMapper.noticeRead(bno);
+	}
+
 }

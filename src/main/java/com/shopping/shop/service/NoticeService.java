@@ -8,4 +8,6 @@ public interface NoticeService {
 	public int noticeInsert(NoticeVO vo) throws Exception;
 	
 	public List<NoticeVO> noticeList() throws Exception;
+	
+	public NoticeVO noticeRead(int bno) throws Exception;
 }

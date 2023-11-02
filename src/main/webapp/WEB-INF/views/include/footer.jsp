@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	footer{
+	  position : relative;
+	  transform: translateY(150px);
+	  
+	}
+</style>
 </head>
 <body>
 	<!--  <footer class="footer text-center">
@@ -40,7 +47,7 @@
 	</div>
 </div> -->
 <!--Start of footer-->
-        <section id="footer">
+        <footer id="footer">
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-6">
@@ -57,7 +64,7 @@
                 <!--End of row-->
             </div>
             <!--End of container-->
-        </section>
+        </footer>
         <!--End of footer-->
 
 </body>
