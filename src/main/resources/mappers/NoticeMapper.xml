@@ -18,6 +18,15 @@
 		where bno = #{bno}
 	</select>
 	
+	<update id="viewCount">
+		update notice set hit = hit + 1
+		where bno = #{bno}
+	</update>
+	
+	<delete id="noticeDelete">
+		delete from notice where bno = #{bno}
+	</delete>
+	
 	
 	
 </mapper>

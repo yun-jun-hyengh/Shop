@@ -22,6 +22,7 @@
 			</div>
 			<section id="container">
 				<form role="form" method="get">
+					
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -83,4 +84,11 @@
 	</div>
 	<%@include file="../include/footer.jsp" %>
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	
+</script>
 </html>

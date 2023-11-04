@@ -10,4 +10,8 @@ public interface NoticeService {
 	public List<NoticeVO> noticeList() throws Exception;
 	
 	public NoticeVO noticeRead(int bno) throws Exception;
+	
+	public void viewCount(int bno);
+	
+	public int noticeDelete(int bno) throws Exception;
 }

@@ -30,4 +30,14 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.noticeRead(bno);
 	}
 
+	@Override
+	public void viewCount(int bno) {
+		noticeMapper.viewCount(bno);
+	}
+
+	@Override
+	public int noticeDelete(int bno) throws Exception {
+		return noticeMapper.noticeDelete(bno);
+	}
+
 }

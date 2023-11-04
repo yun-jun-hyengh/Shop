@@ -43,7 +43,22 @@ public class NoticeController {
 	
 	@GetMapping("/noticeRead")
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+		NoticeVO vo = noticeService.noticeRead(bno);
 		model.addAttribute("noticeVO", noticeService.noticeRead(bno));
+		noticeService.viewCount(vo.getBno());
 	}
+	
+	@PostMapping("/noticeDel")
+	@ResponseBody
+	public String delete(@RequestParam("bno") int bno) throws Exception{
+		//System.out.println("삭제할 게시글 번호 : " + bno);
+		int result = noticeService.noticeDelete(bno);
+		if(result == 1) {
+			return "success";
+		} 
+		return "fali";
+	}
+	
+	
 	
 }

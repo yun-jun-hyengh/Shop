@@ -27,6 +27,9 @@
 <body>
 	<%@include file="../include/header.jsp"%>
 	<div class="row ">
+		<form name="readForm" role="form">
+			<input type="hidden" id="bno" name="bno" value="${noticeVO.bno}">
+		</form>
 		<div class="form-group text-center" style="margin:35px;">
 				<h2>상세페이지</h2>
 		</div>
@@ -102,4 +105,33 @@
        
 	</footer>
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	var bno = $("#bno").val();
+	//console.log(bno);
+	$(document).ready(function(){
+		// 목록
+		$("#list_btn").click(function(){
+			location.href = "/shop/notice/noticelist";
+		});
+		
+		// 삭제 
+		$("#delete_btn").click(function(){
+			$.ajax({
+				url:"/shop/notice/noticeDel?bno="+bno,
+				type:"post",
+				success:function(data){
+					//console.log(data);
+					if(data == "success"){
+						alert("게시글 삭제가 완료되었습니다.");
+						location.href = "/shop/notice/noticelist";
+					}
+				}
+			});
+		});
+	});
+</script>
 </html>
