@@ -8,15 +8,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	p {
-		margin: 20px 0px;
+	#p{
+		margin: 35px;
+		/*padding-right: 15px;*/
+		padding-left: 150px;
 	}
 </style>
 </head>
 <body>
 	<%@include file="../include/header.jsp" %>
 	<div class="row">
-		<div class="col-md-10" style="margin:45px; padding:25px;">
+		<div class="col-md-10" id="p">
 			<div class="form-group text-center">
 				<h2>공지사항</h2>
 			</div>
@@ -51,9 +53,17 @@
 						</span>
 					</div>
 					
-					<div class="col-md-offset-3">
-						<!-- 페이징 -->
+					<div class="form-group text-center">
+						<div class="col-md-offset-3" style="padding: 5px; margin: 5px;">
+							<!-- 페이징 -->
+							<button type="button" class="btn btn-theme03" onclick="goPage()" >◀◀</button>
+							<button type="button" class="btn btn-theme03">◀</button>
+							<button type="button" class="">1</button>
+							<button type="button" class="btn btn-theme03">▶</button>
+							<button type="button" class="btn btn-theme03">▶▶</button>
+						</div>
 					</div>
+					
 					
 						
 					<div class="search row">

@@ -32,4 +32,15 @@
 		regdate=now() where bno = #{bno}
 	</update>
 	
+	<sql id="findSql">
+		<if test="findType != null">
+			<if test="findType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="findType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+	
 </mapper>
