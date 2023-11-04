@@ -89,6 +89,9 @@
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
 <script type="text/javascript">
-	
+	var modifyResult = "${modifyResult}";
+	if(modifyResult == 'modSuccess'){
+		alert("게시글 수정이 완료되었습니다.");
+	}
 </script>
 </html>

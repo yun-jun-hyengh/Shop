@@ -18,4 +18,6 @@ public interface NoticeMapper {
 	public void viewCount(int bno);
 	
 	public int noticeDelete(int bno) throws Exception;
+	
+	public void noticeUpdate(NoticeVO vo) throws Exception;
 }

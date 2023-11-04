@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopping.shop.service.NoticeService;
 import com.shopping.shop.vo.NoticeVO;
@@ -59,6 +60,16 @@ public class NoticeController {
 		return "fali";
 	}
 	
+	@GetMapping("/noticeModifyPage")
+	public void modifyPage(@RequestParam("bno") int bno, Model model) throws Exception {
+		model.addAttribute("noticeVO", noticeService.noticeRead(bno));
+	}
 	
+	@PostMapping("/noticeModifyPage")
+	public String modify(NoticeVO noticeVO, RedirectAttributes rttr) throws Exception {
+		noticeService.noticeUpdate(noticeVO);
+		rttr.addFlashAttribute("modifyResult","modSuccess");
+		return "redirect:/notice/noticelist";
+	}
 	
 }

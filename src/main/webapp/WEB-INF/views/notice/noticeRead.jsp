@@ -114,6 +114,7 @@
 <script type="text/javascript">
 	var bno = $("#bno").val();
 	//console.log(bno);
+	var formObj = $("form[role='form']");
 	$(document).ready(function(){
 		// 목록
 		$("#list_btn").click(function(){
@@ -133,6 +134,13 @@
 					}
 				}
 			});
+		});
+		
+		// 수정 
+		$("#update_btn").click(function(){
+			formObj.attr("action","/shop/notice/noticeModifyPage");
+			formObj.attr("method","GET");
+			formObj.submit();
 		});
 	});
 </script>
