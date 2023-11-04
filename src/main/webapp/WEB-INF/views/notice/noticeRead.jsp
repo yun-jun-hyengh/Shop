@@ -57,7 +57,9 @@
 						<td colspan="2">
 							<p>
 								<font size="10em">
-									<div class="text-break text-center" style="margin:25px;">${noticeVO.content}</div>
+									<div class="text-break" style="white-space: pre-line;">
+										${noticeVO.content}
+									</div>
 								</font>
 							</p> <!--<c:forEach var="file" items="${freefile}">
 								<img src="/img/${file.STORED_FILE_NAME}">
