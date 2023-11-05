@@ -8,13 +8,13 @@
 		select count(*) from member
 	</select>
 	
-	<!-- 상위 5개 회원 리스트 -->
+	<!-- 최근 한달 가입한 회원 리스트 -->
 	<select id="memberList" resultType="com.shopping.shop.vo.MemberVO">
 		select m.memberNum, m.memberId, m.memberName, m.memberPhoneNumber,
 		m.memberEmail, m.point, g.codeName from member m
 		inner join grade g
 		on m.tier = g.code
-		order by memberNum desc limit 5
+		where m.joinData between date_add(now(), interval - 1 month) and now()
 	</select>
 	
 	
