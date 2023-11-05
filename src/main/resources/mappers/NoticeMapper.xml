@@ -9,8 +9,21 @@
 	</insert>
 	
 	<select id="noticeList" resultType="com.shopping.shop.vo.NoticeVO">
-		select bno, title, writer, regdate, hit from notice
-		order by bno desc
+		<![CDATA[
+			select bno, title, writer, regdate, hit 
+			from notice where 1=1
+			]]>
+			<include refid="findSql"></include>
+		<![CDATA[
+			order by bno desc limit #{startPage}, #{numPerPage}
+		]]>
+	</select>
+	
+	<select id="noticeFindCountData" resultType="int">
+		<![CDATA[
+			select count(bno) from board where bno > 0
+			]]>
+			<include refid="findSql"></include>		
 	</select>
 	
 	<select id="noticeRead" resultType="com.shopping.shop.vo.NoticeVO">
@@ -39,6 +52,13 @@
 			</if>
 			<if test="findType == 'c'.toString()">
 				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="findType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="findType == 'wc'.toString()">
+				and (writer like CONCAT('%', #{keyword}, '%')
+				or content like CONCAT('%', #{keyword}, '%'))
 			</if>
 		</if>
 	</sql>

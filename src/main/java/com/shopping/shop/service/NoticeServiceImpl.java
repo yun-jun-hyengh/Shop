@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shopping.shop.mapper.NoticeMapper;
+import com.shopping.shop.vo.FindCriteria;
 import com.shopping.shop.vo.NoticeVO;
 
 @Service
@@ -21,8 +22,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> noticeList() throws Exception {
-		return noticeMapper.noticeList();
+	public List<NoticeVO> noticeList(FindCriteria findCri) throws Exception {
+		return noticeMapper.noticeList(findCri);
 	}
 
 	@Override
@@ -43,6 +44,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void noticeUpdate(NoticeVO vo) throws Exception {
 		noticeMapper.noticeUpdate(vo);
+	}
+
+	@Override
+	public int noticeFindCountData(FindCriteria findCri) throws Exception {
+		return noticeMapper.noticeFindCountData(findCri);
 	}
 
 }
