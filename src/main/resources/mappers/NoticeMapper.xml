@@ -21,7 +21,7 @@
 	
 	<select id="noticeFindCountData" resultType="int">
 		<![CDATA[
-			select count(bno) from board where bno > 0
+			select count(bno) from notice where bno > 0
 			]]>
 			<include refid="findSql"></include>		
 	</select>

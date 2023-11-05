@@ -38,7 +38,7 @@
 						<c:forEach items="${list}" var="bvo" varStatus="i">
 							<tr>
 								<td>${bvo.bno}</td>
-								<td><a href="/shop/notice/noticeRead?bno=${bvo.bno}">${bvo.title}</a></td>
+								<td><a href="/shop/notice/noticeRead${pagingMaker.makeFind(pagingMaker.cri.page)}&bno=${bvo.bno}">${bvo.title}</a></td>
 								<td>${bvo.writer}</td>
 								<td><fmt:formatDate pattern="yyyy/MM/dd" value="${bvo.regdate}"/></td>
 								<th>${bvo.hit}</th>
@@ -56,11 +56,33 @@
 					<div class="form-group text-center">
 						<div class="col-md-offset-3" style="padding: 5px; margin: 5px;">
 							<!-- 페이징 -->
-							<button type="button" class="btn btn-theme03" onclick="goPage()" >◀◀</button>
-							<button type="button" class="btn btn-theme03">◀</button>
-							<button type="button" class="">1</button>
-							<button type="button" class="btn btn-theme03">▶</button>
-							<button type="button" class="btn btn-theme03">▶▶</button>
+							<c:if test="${pagingMaker.prev}">
+								<button type="button" class="btn btn-theme03" onclick="goPage()" >◀◀</button>
+							</c:if>
+							
+							<c:if test="${pagingMaker.prev}">
+							<a href="/shop/notice/noticelist${pagingMaker.makeFind(pagingMaker.startPage - 1)}">
+								<button type="button" class="btn btn-theme03">◀</button>
+							</a>
+							</c:if>
+							
+							<c:forEach begin="${pagingMaker.startPage}" end="${pagingMaker.endPage}" var="pNum">
+								<a href="/shop/notice/noticelist${pagingMaker.makeFind(pNum)}">
+									<button type="button" class="<c:out value="${pagingMaker.cri.page == pNum ? 'btn btn-theme':'btn btn-default'}"/>">${pNum}</button>
+								</a>
+							</c:forEach>
+							
+							<c:if test="${pagingMaker.next && pagingMaker.endPage > 0}">
+								<a href="/shop/notice/noticelist${pagingMaker.makeFind(pagingMaker.endPage + 1)}">
+									<button type="button" class="btn btn-theme03">▶</button>
+								</a>
+							</c:if>
+							
+							<c:if test="${pagingMaker.next && pagingMaker.endPage > 0}">
+								<a href="/shop/notice/noticelist${pagingMaker.makeFind(finalEndPage)}">
+									<button type="button" class="btn btn-theme03">▶▶</button>
+								</a>
+							</c:if>
 						</div>
 					</div>
 					
@@ -68,18 +90,18 @@
 						
 					<div class="search row">
 						<div class="col-xs-2 col-sm-2">
-							<select name="searchType" class="form-control">
-								<option value="n">-----</option>
-								<option value="t">제목</option>
-								<option value="c">내용</option>
-								<option value="w">작성자</option>
+							<select name="findType" class="form-control">
+								<option value="n" <c:out value="${fCri.findType == null ? 'selected' : ''}"/>>-----</option>
+								<option value="t" <c:out value="${fCri.findType == 't' ? 'selected' : '' }"/>>제목</option>
+								<option value="c" <c:out value="${fCri.findType == 'c' ? 'selected' : '' }"/>>내용</option>
+								<option value="w" <c:out value="${fCri.findType == 'w' ? 'selected' : '' }"/>>작성자</option>
 								<option value="tc">제목+내용</option>
 							</select>
 						</div>
 						 
 						<div class="col-xs-10 col-sm-10">
 							<div class="input-group">
-								<input type="text" name="keyword" id="keywordInput" class="form-control"/>
+								<input type="text" name="keyword" id="findword" class="form-control"/>
 								<span class="input-group-btn">
 									<button id="searchBtn" type="button" class="btn btn-default">검색</button> 	
 								</span>
@@ -103,5 +125,15 @@
 	if(modifyResult == 'modSuccess'){
 		alert("게시글 수정이 완료되었습니다.");
 	}
+	//first페이지로 이동
+  	function goPage() { location.href="/shop/notice/noticelist?page=${pagingMaker.cri.page = 1}&numPerPage=${pagingMaker.cri.numPerPage}"; }
+	
+	$(document).ready(function(){
+		$("#searchBtn").on("click", function(e){
+			self.location="/shop/notice/noticelist" + "${pagingMaker.makeURI(1)}"
+						+"&findType="+$("select option:selected").val()
+						+"&keyword="+$("#findword").val();
+		});
+	});
 </script>
 </html>
