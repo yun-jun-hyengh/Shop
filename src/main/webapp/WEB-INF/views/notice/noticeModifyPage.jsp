@@ -145,7 +145,11 @@
 		<div id="layoutSidenav_content">
 			<main class="col-md-10 ms-sm-auto row">
 				<form class="col d-block" role="form" method="POST">
-					
+					<input type="hidden" id="bno" name="bno" value="${noticeVO.bno}">
+					<input type="hidden" name="page" value="${fCri.page}">
+					<input type="hidden" name="numPerPage" value="${fCri.numPerPage}">
+					<input type="hidden" name="findType" value="${fCri.findType}">
+					<input type="hidden" name="keyword" value="${fCri.keyword}">
 					<div class="row ms-sm-auto">
 						<div class="col-md-2"></div>
 						<div class="col-md-8" style="width: 86.66666667%;">
@@ -202,7 +206,10 @@
 		var frmObj = $("form[role='form']");
 		
 		$("#backBtn").on("click", function(){
-			location.href = "/shop/notice/noticelist";
+			//location.href = "/shop/notice/noticelist";
+			location.href = "/shop/notice/noticelist?page=${fCri.page}"
+				+"&numPerPage=${fCri.numPerPage}"
+				+"&findType=${fCri.findType}&keyword=${fCri.keyword}";
 		});
 		
 		$("#updateBtn").on("click", function(){

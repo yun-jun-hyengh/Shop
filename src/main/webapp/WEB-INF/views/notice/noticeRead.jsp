@@ -29,6 +29,10 @@
 	<div class="row ">
 		<form name="readForm" role="form">
 			<input type="hidden" id="bno" name="bno" value="${noticeVO.bno}">
+			<input type="hidden" name="page" value="${fCri.page}">
+			<input type="hidden" name="numPerPage" value="${fCri.numPerPage}">
+			<input type="hidden" name="findType" value="${fCri.findType}">
+			<input type="hidden" name="keyword" value="${fCri.keyword}"> 
 		</form>
 		<div class="form-group text-center" style="margin:35px;">
 				<h2>상세페이지</h2>
@@ -118,7 +122,9 @@
 	$(document).ready(function(){
 		// 목록
 		$("#list_btn").click(function(){
-			location.href = "/shop/notice/noticelist";
+			location.href = "/shop/notice/noticelist?page=${fCri.page}"
+							+"&numPerPage=${fCri.numPerPage}"
+							+"&findType=${fCri.findType}&keyword=${fCri.keyword}";
 		});
 		
 		// 삭제 
@@ -130,7 +136,9 @@
 					//console.log(data);
 					if(data == "success"){
 						alert("게시글 삭제가 완료되었습니다.");
-						location.href = "/shop/notice/noticelist";
+						location.href = "/shop/notice/noticelist?page=${fCri.page}"
+										+"&numPerPage=${fCri.numPerPage}"
+										+"&findType=${fCri.findType}&keyword=${fCri.keyword}";
 					}
 				}
 			});

@@ -53,7 +53,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/noticeRead")
-	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+	public void read(@RequestParam("bno") int bno, Model model, @ModelAttribute("fCri") FindCriteria fCri) throws Exception {
 		NoticeVO vo = noticeService.noticeRead(bno);
 		model.addAttribute("noticeVO", noticeService.noticeRead(bno));
 		noticeService.viewCount(vo.getBno());
@@ -61,23 +61,35 @@ public class NoticeController {
 	
 	@PostMapping("/noticeDel")
 	@ResponseBody
-	public String delete(@RequestParam("bno") int bno) throws Exception{
+	public String delete(@RequestParam("bno") int bno, RedirectAttributes rttr,
+			FindCriteria fCri) throws Exception{
 		//System.out.println("삭제할 게시글 번호 : " + bno);
 		int result = noticeService.noticeDelete(bno);
 		if(result == 1) {
+			rttr.addAttribute("page", fCri.getPage());
+			rttr.addAttribute("numPerPage", fCri.getNumPerPage());
+			rttr.addAttribute("findType", fCri.getFindType());
+			rttr.addAttribute("keyword", fCri.getKeyword());
 			return "success";
 		} 
 		return "fali";
 	}
 	
 	@GetMapping("/noticeModifyPage")
-	public void modifyPage(@RequestParam("bno") int bno, Model model) throws Exception {
+	public void modifyPage(@RequestParam("bno") int bno, Model model, 
+			@ModelAttribute("fCri") FindCriteria fCri) throws Exception {
 		model.addAttribute("noticeVO", noticeService.noticeRead(bno));
 	}
 	
 	@PostMapping("/noticeModifyPage")
-	public String modify(NoticeVO noticeVO, RedirectAttributes rttr) throws Exception {
+	public String modify(NoticeVO noticeVO, RedirectAttributes rttr,
+			FindCriteria fCri) throws Exception {
 		noticeService.noticeUpdate(noticeVO);
+		
+		rttr.addAttribute("page", fCri.getPage());
+		rttr.addAttribute("numPerPage", fCri.getNumPerPage());
+		rttr.addAttribute("findType", fCri.getFindType());
+		rttr.addAttribute("keyword", fCri.getKeyword());
 		rttr.addFlashAttribute("modifyResult","modSuccess");
 		return "redirect:/notice/noticelist";
 	}
