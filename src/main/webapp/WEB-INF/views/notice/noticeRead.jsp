@@ -116,7 +116,22 @@ p {
 				</div>
 			</div>
 		</div>
-
+		
+		<!-- 댓글목록 -->
+		<!--  <div class="form-group">
+			<ul class="justify-content-start bg-light" id="reply" style="margin: 16px; padding-left: initial; font-size: 30px; color: #15e1a1;"></ul>
+			<ul class="pgeNumList"></ul>
+		</div> -->
+		<div class="border-top border-bottom" style="margin:35px; padding: 18px; maring-left: 10px;">
+			<div style="margin-top: 10px"></div>
+			<c:forEach items="${replyList}" var="replyList">
+				<div><p class="fw-bold" style="padding: 4px; margin: 7px; font-size: 20px;">작성자 : ${replyList.replyer}</p></div>
+				<div class="text-break" style="padding: 4px; margin: 7px;"><p>내용 : ${replyList.replyContent}</p></div>
+				<div><p class="fw-light" style="padding: 4px; margin: 7px;">작성날짜 : <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></p></div>
+				<button type="button" class="btn float-end btn-secondary opacity-75 deleteReply" style="margin-left: 10px">삭제</button> 
+				<button type="button" class="btn float-end btn-secondary opacity-75 deleteReply" style="margin-left: 10px">수정</button>
+			</c:forEach>
+		</div>	
 	</div>
 	<footer id="footer">
 		<div class="container">
@@ -183,6 +198,7 @@ p {
 	});
 </script>
 <script type="text/javascript">
+
 	// 댓글 작성 
 	$("#submitBtn").on("click", function(){
 		var reWriter = $("#writer").val();
@@ -205,9 +221,15 @@ p {
 			success : function(result){
 				if(result == 'success'){
 					alert("댓글 등록 성공");
+					history.go(0);
 				}
 			}
 		});
+	});
+	
+	$("#reDelBtn").on("click", function(){
+		
+		
 	});
 </script>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.shop.service.NoticeReplyService;
@@ -37,8 +38,8 @@ public class NoticeReplyController {
 		return resEntity;
 	}
 	
-	// https://dev-gorany.tistory.com/16
-	@GetMapping("/selectAll/{bno}")
+	
+	@GetMapping(value="/selectAll/{bno}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<NoticeReplyVO>> list(@PathVariable("bno") int bno) {
 		ResponseEntity<List<NoticeReplyVO>> resEntity = null;
 		try {
