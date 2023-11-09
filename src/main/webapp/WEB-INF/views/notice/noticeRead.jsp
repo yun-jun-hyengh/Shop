@@ -8,20 +8,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	p {
-		margin: 20px 0px;
-	}
-	
-	#breack{
-		padding-right: 55px;
-		padding-left: 55px;
-		margin: 15px;  
-	}
-	
-	#footer{
-	  position : relative;
-	  transform: translateY(350px);
-	}
+p {
+	margin: 20px 0px;
+}
+
+#breack {
+	padding-right: 55px;
+	padding-left: 55px;
+	margin: 15px;
+}
+
+#footer {
+	position: relative;
+	transform: translateY(350px);
+}
 </style>
 </head>
 <body>
@@ -29,13 +29,13 @@
 	<div class="row ">
 		<form name="readForm" role="form">
 			<input type="hidden" id="bno" name="bno" value="${noticeVO.bno}">
-			<input type="hidden" name="page" value="${fCri.page}">
-			<input type="hidden" name="numPerPage" value="${fCri.numPerPage}">
+			<input type="hidden" name="page" value="${fCri.page}"> <input
+				type="hidden" name="numPerPage" value="${fCri.numPerPage}">
 			<input type="hidden" name="findType" value="${fCri.findType}">
-			<input type="hidden" name="keyword" value="${fCri.keyword}"> 
+			<input type="hidden" name="keyword" value="${fCri.keyword}">
 		</form>
-		<div class="form-group text-center" style="margin:35px;">
-				<h2>상세페이지</h2>
+		<div class="form-group text-center" style="margin: 35px;">
+			<h2>상세페이지</h2>
 		</div>
 		<div class="col-md-12 breack" id="breack">
 			<table class="table table-condensed">
@@ -53,7 +53,7 @@
 					</tr>
 					<tr>
 						<td>글쓴이</td>
-						<td>${noticeVO.writer} <span style='float: right'>조회 :
+						<td>${noticeVO.writer}<span style='float: right'>조회 :
 								${noticeVO.hit}</span>
 						</td>
 					</tr>
@@ -62,8 +62,7 @@
 							<p>
 								<font size="10em">
 									<div class="text-break" style="white-space: pre-line;">
-										${noticeVO.content}
-									</div>
+										${noticeVO.content}</div>
 								</font>
 							</p> <!--<c:forEach var="file" items="${freefile}">
 								<img src="/img/${file.STORED_FILE_NAME}">
@@ -90,65 +89,124 @@
 				</thead>
 			</table>
 		</div>
+		<div class="row mt">
+			<div class="col-lg-12">
+				<div class="form-panel" style="margin: 40px; padding: 25px;">
+					<div class="form-group">
+						<h3>댓글작성</h3>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 col-sm-2 control-label">작성자</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="replyer"
+								id="writer" value="${member.memberName}" readonly="readonly"><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 col-sm-2 control-label">댓글</label>
+						<div class="col-sm-10">
+							<input type="text" name="replyContent" id="addReContent"
+								class="form-control" /><br>
+						</div>
+					</div>
+					<div class="form-group" style="float: right;">
+						<button id="submitBtn" type="submit" class="btn btn-primary">댓글
+							작성</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 	<footer id="footer">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-md-6">
-                        <div class="copyright">
-                            <p>@ 2016 - Design By <span><a href="">&#9798;</a></span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="designer">
-                            <p>A Design By <a href="#">XpeedStudio</a></p>
-                        </div>
-                    </div>
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-       
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-6">
+					<div class="copyright">
+						<p>
+							@ 2016 - Design By <span><a href="">&#9798;</a></span>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="designer">
+						<p>
+							A Design By <a href="#">XpeedStudio</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--End of row-->
+		</div>
+		<!--End of container-->
+
 	</footer>
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	var bno = $("#bno").val();
 	//console.log(bno);
 	var formObj = $("form[role='form']");
-	$(document).ready(function(){
+	$(document).ready(function() {
 		// 목록
-		$("#list_btn").click(function(){
+		$("#list_btn").click(function() {
 			location.href = "/shop/notice/noticelist?page=${fCri.page}"
-							+"&numPerPage=${fCri.numPerPage}"
-							+"&findType=${fCri.findType}&keyword=${fCri.keyword}";
+							+ "&numPerPage=${fCri.numPerPage}"
+							+ "&findType=${fCri.findType}&keyword=${fCri.keyword}";
 		});
-		
+
 		// 삭제 
-		$("#delete_btn").click(function(){
+		$("#delete_btn").click(function() {
 			$.ajax({
-				url:"/shop/notice/noticeDel?bno="+bno,
-				type:"post",
-				success:function(data){
+				url : "/shop/notice/noticeDel?bno="+ bno,
+				type : "post",
+				success : function(data) {
 					//console.log(data);
-					if(data == "success"){
+					if (data == "success") {
 						alert("게시글 삭제가 완료되었습니다.");
 						location.href = "/shop/notice/noticelist?page=${fCri.page}"
-										+"&numPerPage=${fCri.numPerPage}"
-										+"&findType=${fCri.findType}&keyword=${fCri.keyword}";
+										+ "&numPerPage=${fCri.numPerPage}"
+										+ "&findType=${fCri.findType}&keyword=${fCri.keyword}";
 					}
 				}
 			});
 		});
-		
+
 		// 수정 
-		$("#update_btn").click(function(){
+		$("#update_btn").click(function() {
 			formObj.attr("action","/shop/notice/noticeModifyPage");
-			formObj.attr("method","GET");
+			formObj.attr("method", "GET");
 			formObj.submit();
+		});
+	});
+</script>
+<script type="text/javascript">
+	// 댓글 작성 
+	$("#submitBtn").on("click", function(){
+		var reWriter = $("#writer").val();
+		var reContent = $("#addReContent").val();
+		// url 주소 최상위 루트 경로가 shop이므로 반드시 명시해 주어야 한다 
+		// 아니면 404 에러남
+		$.ajax({
+			type:'post',
+			url:'/shop/replies',
+			headers :{
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType:'text',
+			data: JSON.stringify({
+				bno : ${noticeVO.bno},
+				replyer : reWriter,
+				replyContent : reContent
+			}),
+			success : function(result){
+				if(result == 'success'){
+					alert("댓글 등록 성공");
+				}
+			}
 		});
 	});
 </script>

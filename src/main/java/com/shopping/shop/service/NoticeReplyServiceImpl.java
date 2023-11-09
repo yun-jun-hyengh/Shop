@@ -1,0 +1,29 @@
+package com.shopping.shop.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shopping.shop.mapper.NoticeReplyMapper;
+import com.shopping.shop.vo.NoticeReplyVO;
+
+@Service
+public class NoticeReplyServiceImpl implements NoticeReplyService {
+	
+	@Autowired
+	private NoticeReplyMapper noticeReplyMapper;
+
+	@Override
+	public void noticeReWrite(NoticeReplyVO vo) throws Exception {
+		noticeReplyMapper.noticeReWrite(vo);
+	}
+
+	@Override
+	public List<NoticeReplyVO> noticeReList(int bno) throws Exception {
+		return noticeReplyMapper.noticeReList(bno);
+	}
+	
+	
+
+}

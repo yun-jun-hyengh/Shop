@@ -1,13 +1,10 @@
-package com.shopping.shop.mapper;
+package com.shopping.shop.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.shopping.shop.vo.NoticeReplyVO;
 
-@Mapper
-public interface NoticeReplyMapper {
+public interface NoticeReplyService {
 	
 	public void noticeReWrite(NoticeReplyVO vo) throws Exception;
 	
