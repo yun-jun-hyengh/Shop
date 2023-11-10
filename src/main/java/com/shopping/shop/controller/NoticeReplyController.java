@@ -51,6 +51,18 @@ public class NoticeReplyController {
 		return resEntity;
 	}
 	
-	
+	@RequestMapping(value="/reDel/{rno}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> reDel(@PathVariable("rno") int rno) {
+		ResponseEntity<String> resEntity = null;
+		try {
+			noticeReplyService.noticeReDelete(rno);
+			resEntity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			resEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return resEntity;
+	}
 	
 }

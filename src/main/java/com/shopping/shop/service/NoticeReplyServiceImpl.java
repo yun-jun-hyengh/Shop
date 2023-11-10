@@ -23,7 +23,10 @@ public class NoticeReplyServiceImpl implements NoticeReplyService {
 	public List<NoticeReplyVO> noticeReList(int bno) throws Exception {
 		return noticeReplyMapper.noticeReList(bno);
 	}
-	
-	
+
+	@Override
+	public void noticeReDelete(int rno) throws Exception {
+		noticeReplyMapper.noticeReDelete(rno);
+	}
 
 }
