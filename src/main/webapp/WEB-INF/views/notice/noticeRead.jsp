@@ -130,8 +130,8 @@ p {
 				<div><p class="fw-bold" style="padding: 4px; margin: 7px; font-size: 20px;">작성자 : ${replyList.replyer}</p></div>
 				<div class="text-break" style="padding: 4px; margin: 7px;"><p>내용 : ${replyList.replyContent}</p></div>
 				<div><p class="fw-light" style="padding: 4px; margin: 7px;">작성날짜 : <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></p></div>
-				<button type="button" id="reDelBtn" class="btn float-end btn-secondary opacity-75 deleteReply" style="margin-left: 10px">삭제</button> 
-				<button type="button" class="btn float-end btn-secondary opacity-75 deleteReply" style="margin-left: 10px">수정</button>
+				<button type="button" id="reDelBtn-${replyList.rno}" class="btn float-end btn-secondary opacity-75 deleteReply" style="margin-left: 10px">삭제</button> 
+				<button type="button" class="btn float-end btn-secondary opacity-75 updateReply" style="margin-left: 10px">수정</button>
 			</c:forEach>
 		</div>
 	</div>
@@ -223,13 +223,33 @@ p {
 			success : function(result){
 				if(result == 'success'){
 					alert("댓글 등록 성공");
-					//history.go(0);
-					reListAll();
+					history.go(0);
 				}
 			}
 		});
 	});
 	
+	const deleteReplyBtns = document.querySelectorAll('.deleteReply');
 	
+	deleteReplyBtns.forEach((element) => {
+		element.onclick = (event) => {
+			const replyNum = event.target.id.split('-')[1];
+			//console.log(replyNum);
+			const answer = confirm('댓글을 삭제하시겠습니까?');
+			if(answer == true){
+				//location.href = '/shop/replies/reDel' + replyNum;
+				var xhr = new XMLHttpRequest();
+				xhr.open('DELETE', '/shop/replies/reDel/' + replyNum);
+				xhr.send();
+				
+				xhr.onload = () => {
+					if(xhr.status == 200){
+						alert('댓글이 삭제되었습니다.');
+						location.reload();
+					}
+				}
+			}
+		}
+	});
 </script>
 </html>
