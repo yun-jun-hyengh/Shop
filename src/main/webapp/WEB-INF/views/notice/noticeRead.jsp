@@ -295,5 +295,10 @@
 			}
 		});//ajax
 	});
+	
+	$("#reModifyBtn").on("click", function(){
+		var rno = $(".title-dialog").html();
+		
+	});
 </script>
 </html>
