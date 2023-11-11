@@ -11,4 +11,6 @@ public interface NoticeReplyService {
 	public List<NoticeReplyVO> noticeReList(int bno) throws Exception;
 
 	public void noticeReDelete(int rno) throws Exception;
+	
+	public void noticeReModify(NoticeReplyVO vo) throws Exception;
 }

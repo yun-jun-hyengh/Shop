@@ -8,20 +8,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-p {
-	margin: 20px 0px;
-}
-
-#breack {
-	padding-right: 55px;
-	padding-left: 55px;
-	margin: 15px;
-}
-
-#footer {
-	position: relative;
-	transform: translateY(350px);
-}
+	p {
+		margin: 20px 0px;
+	}
+	
+	#breack {
+		padding-right: 55px;
+		padding-left: 55px;
+		margin: 15px;
+	}
+	
+	#footer {
+		position: relative;
+		transform: translateY(350px);
+	}
+	#reply {
+		margin: 39px;
+		padding: 19px;
+		margin-right: 1250px;
+	}
 </style>
 </head>
 <body>
@@ -115,24 +120,29 @@ p {
 					</div>
 				</div>
 			</div>
-			<!-- 댓글목록 -->
-			<div class="form-group" style="float:left;">
-				<div style="margin-top: 10px"></div>
-				<ul class="fw-bold" id="reply" style="padding: 2px; margin: 37px; font-size: 20px;"></ul>
-				<ul class="pgeNumList"></ul>
-			</div> 
-		</div>
-		
-		
-		<div class="border-top border-bottom" style="margin:35px; padding: 18px; maring-left: 10px;">
-			<div style="margin-top: 10px"></div>
-			<c:forEach items="${replyList}" var="replyList">
-				<div><p class="fw-bold" style="padding: 4px; margin: 7px; font-size: 20px;">작성자 : ${replyList.replyer}</p></div>
-				<div class="text-break" style="padding: 4px; margin: 7px;"><p>내용 : ${replyList.replyContent}</p></div>
-				<div><p class="fw-light" style="padding: 4px; margin: 7px;">작성날짜 : <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></p></div>
-				<button type="button" id="reDelBtn-${replyList.rno}" class="btn float-end btn-secondary opacity-75 deleteReply" style="margin-left: 10px">삭제</button> 
-				<button type="button" class="btn float-end btn-secondary opacity-75 updateReply" style="margin-left: 10px">수정</button>
-			</c:forEach>
+			
+			<!-- 댓글 수정 화면 -->
+			<div class="form-panel" id="modifyDiv" style="margin: 40px; padding: 25px;">
+				<span class="title-dialog"></span>번 댓글
+				<div class="form-group">
+					<label class="col-sm-2 col-sm-2 control-label">수정할 내용</label>
+						<div class="col-sm-10">
+							<input type="text" name="replyContent" id="replyContent"
+								class="form-control" /><br>
+						</div>
+				</div>
+				<div class="form-group" style="float: right;">
+					<button id="reModifyBtn" class="btn btn-primary">댓글수정</button>
+					<button id="reDelBtn" class="btn btn-primary">댓글삭제</button>
+					<button id="closeBtn" class="btn btn-primary">닫기</button>
+				</div>
+			</div>
+			
+			<div class="border-top border-bottom" style="margin:35px; padding: 18px; maring-left: 10px;">
+				<ul id="reply" style="width: 500px;"></ul>
+				<ul class="pgeNumList">
+				</ul>
+			</div>
 		</div>
 	</div>
 	<footer id="footer">
@@ -201,6 +211,21 @@ p {
 </script>
 <script type="text/javascript">
 
+	function reListAll(){
+		$.getJSON("/shop/replies/selectAll/"+${noticeVO.bno}, function(data){
+			var str = "";
+			$(data).each(function(){
+				 str += "<li data-rno='"+this.rno+"'class='reList'>"+
+			        '<div class="text-justify" style="padding: 4px; margin: 7px; font-size: 15px;">' +
+			        '작성자 : <span class="replyer">' + this.replyer + '<span>' + '   |   내용 : <span class="replyerContent">' + this.replyContent + '</span>' + '<span style="color: #ff52a0;"><button type="button" class="btn float-end btn-secondary opacity-75 updateReply" style="float: right;">수정</button></span>'+
+			        '</div>' +
+			        '</li>';
+			});
+			$("#reply").html(str);
+		});
+	}
+	reListAll();
+
 	// 댓글 작성 
 	$("#submitBtn").on("click", function(){
 		var reWriter = $("#writer").val();
@@ -223,33 +248,52 @@ p {
 			success : function(result){
 				if(result == 'success'){
 					alert("댓글 등록 성공");
-					history.go(0);
+					reListAll();
 				}
 			}
 		});
 	});
 	
-	const deleteReplyBtns = document.querySelectorAll('.deleteReply');
+	// 수정 버튼 클릭시 
+	$("#reply").on("click", ".updateReply", function(){
+		var listItem = $(this).closest('li');
+		
+		var rno = listItem.data('rno');
+		var replyer = listItem.find('.replyer').text();
+		var replyContent = listItem.find('.replyContent').text();
+		
+		$(".title-dialog").html(rno);
+		$("#replyContent").val(replyer + replyContent);
+		$("#modifyDiv").show();
+	});
 	
-	deleteReplyBtns.forEach((element) => {
-		element.onclick = (event) => {
-			const replyNum = event.target.id.split('-')[1];
-			//console.log(replyNum);
-			const answer = confirm('댓글을 삭제하시겠습니까?');
-			if(answer == true){
-				//location.href = '/shop/replies/reDel' + replyNum;
-				var xhr = new XMLHttpRequest();
-				xhr.open('DELETE', '/shop/replies/reDel/' + replyNum);
-				xhr.send();
+	$("#modifyDiv").hide(); // 숨기고 있다가 
+	
+	$("#closeBtn").on("click", function(){ // 열리면 닫기 버튼 클릭시 닫기 !! 
+		$("#modifyDiv").hide();
+	});
+	
+	$("#reDelBtn").on("click", function(){
+		var rno = $(".title-dialog").html();
+		var replyContent = $("#replyContent").val();
 				
-				xhr.onload = () => {
-					if(xhr.status == 200){
-						alert('댓글이 삭제되었습니다.');
-						location.reload();
-					}
+		$.ajax({
+			type : 'delete',
+			url : '/shop/replies/reDel/'+rno,
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "DELETE"
+			},
+			dataType : 'text',
+			success : function(result){
+				console.log("result:"+result);
+				if(result=='success'){
+					alert("댓글 삭제 성공!!!");
+					$("#modifyDiv").hide(); // 수정창 숨김 !! 
+					reListAll();
 				}
 			}
-		}
+		});//ajax
 	});
 </script>
 </html>

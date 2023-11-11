@@ -29,4 +29,9 @@ public class NoticeReplyServiceImpl implements NoticeReplyService {
 		noticeReplyMapper.noticeReDelete(rno);
 	}
 
+	@Override
+	public void noticeReModify(NoticeReplyVO vo) throws Exception {
+		noticeReplyMapper.noticeReModify(vo);
+	}
+
 }

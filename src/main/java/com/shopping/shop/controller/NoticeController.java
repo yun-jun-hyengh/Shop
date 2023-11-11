@@ -64,8 +64,8 @@ public class NoticeController {
 		model.addAttribute("noticeVO", noticeService.noticeRead(bno));
 		noticeService.viewCount(vo.getBno());
 		
-		List<NoticeReplyVO> replyList = noticeReplyService.noticeReList(bno);
-		model.addAttribute("replyList", replyList);
+		//List<NoticeReplyVO> replyList = noticeReplyService.noticeReList(bno);
+		//model.addAttribute("replyList", replyList);
 	}
 	
 	@PostMapping("/noticeDel")

@@ -16,4 +16,9 @@
 	<delete id="noticeReDelete">
 		delete from noticeReply where rno = #{rno}
 	</delete>
+	
+	<update id="noticeReModify">
+		update noticeReply set replyContent = #{replyContent}
+		where rno = #{rno}
+	</update>
 </mapper>

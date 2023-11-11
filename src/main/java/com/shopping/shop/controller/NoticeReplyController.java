@@ -65,4 +65,20 @@ public class NoticeReplyController {
 		return resEntity;
 	}
 	
+	@RequestMapping(value="/{rno}", method= {RequestMethod.PUT, RequestMethod.PATCH})
+	public ResponseEntity<String> modify(@PathVariable("rno") int rno,
+			@RequestBody NoticeReplyVO vo) {
+		ResponseEntity<String> resEntity = null;
+		try {
+			vo.setRno(rno);
+			noticeReplyService.noticeReModify(vo);
+			resEntity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			resEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return resEntity;
+	}
+	
 }
