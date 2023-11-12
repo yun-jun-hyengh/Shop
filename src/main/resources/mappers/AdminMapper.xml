@@ -82,4 +82,11 @@
 	<select id="getTodayMember" resultType="int">
 		select count(*) from member where date(joinData) = current_date()
 	</select>
+	
+	<!-- 주간 가입자 수 -->
+	<select id="getWeekMember" resultType="map">
+		select count(*) as cnt, date_format(joindata, '%Y-%m-%d') 
+		from member where joinData >= date_sub(now(), interval 7 day)
+		group by date_format(joindata, '%Y-%m-%d')
+	</select>
 </mapper>

@@ -2,6 +2,7 @@ package com.shopping.shop.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,4 +27,6 @@ public interface AdminService {
 	public void excelDown(MemberVO memberVO, HttpServletResponse response) throws Exception;
 	
 	public int getTodayMember() throws Exception;
+	
+	public List<Map<String, Object>> getWeekMember() throws Exception;
 }

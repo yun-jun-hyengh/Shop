@@ -2,6 +2,7 @@ package com.shopping.shop.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -164,6 +165,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int getTodayMember() throws Exception {
 		return adminMapper.getTodayMember();
+	}
+
+	@Override
+	public List<Map<String, Object>> getWeekMember() throws Exception {
+		return adminMapper.getWeekMember();
 	}
 
 }
