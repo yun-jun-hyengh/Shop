@@ -210,6 +210,8 @@
 	});
 </script>
 <script type="text/javascript">
+	var retrievedValue = sessionStorage.getItem('member');
+	console.log(retrievedValue);
 
 	function reListAll(){
 		$.getJSON("/shop/replies/selectAll/"+${noticeVO.bno}, function(data){
@@ -298,7 +300,25 @@
 	
 	$("#reModifyBtn").on("click", function(){
 		var rno = $(".title-dialog").html();
+		var replyContent = $("#replyContent").val();
 		
+		$.ajax({
+			type:'put',
+			url:'/shop/replies/' + rno,
+			headers :{
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "put"
+			},
+			data:JSON.stringify({replyContent:replyContent}),
+			dataType : 'text',
+			success : function(result){
+				if(result == 'success'){
+					alert("댓글이 수정되었습니다.");
+					$("#modifyDiv").hide();
+					reListAll();
+				}
+			}
+		});
 	});
 </script>
 </html>

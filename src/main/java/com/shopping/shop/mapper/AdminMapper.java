@@ -25,4 +25,6 @@ public interface AdminMapper {
 	public void gradeUpdate(HashMap<String, Object> list) throws Exception;
 	
 	public List<MemberVO> selectExcel(MemberVO memberVo) throws Exception;
+	
+	public int getTodayMember() throws Exception;
 }

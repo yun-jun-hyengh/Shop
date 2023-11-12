@@ -77,4 +77,9 @@
 		inner join grade g
 		on m.tier = g.code
 	</select>
+	
+	<!-- 오늘 가입한 회원 수 -->
+	<select id="getTodayMember" resultType="int">
+		select count(*) from member where date(joinData) = current_date()
+	</select>
 </mapper>

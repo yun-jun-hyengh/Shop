@@ -24,4 +24,6 @@ public interface AdminService {
 	public void gradeUpdate(HashMap<String, Object> list) throws Exception;
 	
 	public void excelDown(MemberVO memberVO, HttpServletResponse response) throws Exception;
+	
+	public int getTodayMember() throws Exception;
 }

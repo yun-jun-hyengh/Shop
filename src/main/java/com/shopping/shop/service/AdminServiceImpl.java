@@ -161,4 +161,9 @@ public class AdminServiceImpl implements AdminService {
 		}
 	}
 
+	@Override
+	public int getTodayMember() throws Exception {
+		return adminMapper.getTodayMember();
+	}
+
 }

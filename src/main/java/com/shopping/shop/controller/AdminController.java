@@ -35,9 +35,11 @@ public class AdminController {
 	@GetMapping("/adminMain")
 	public String adminMain(Model model) throws Exception {
 		int totalUser = adminService.getTotalMember();
+		int todayTotalUserCount = adminService.getTodayMember();
 		model.addAttribute("totalUser", totalUser);
 		//model.addAttribute("userCount", sessionCount.getActiveSessions());
 		model.addAttribute("list", adminService.memberList());
+		model.addAttribute("todayTotalUserCount", todayTotalUserCount);
 		return "admin/main";
 	}
 	
@@ -97,6 +99,4 @@ public class AdminController {
 			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		adminService.excelDown(memberVO, response);
 	}
-	
-	// 추가 개발 사항 !! 
 }
