@@ -190,4 +190,16 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="${pageContext.request.contextPath}/resources/js/admin/datatables-simple-demo.js"></script>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$.ajax({
+		type: "GET",
+		url: "/shop/admin/weekJoin",
+		success: function(data){
+			console.log(data);
+		}
+	});
+</script>
 </html>

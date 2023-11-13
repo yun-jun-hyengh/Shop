@@ -1,6 +1,8 @@
 package com.shopping.shop.controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.shopping.shop.service.AdminService;
 import com.shopping.shop.service.VisitCountService;
 import com.shopping.shop.vo.FindCriteria;
@@ -98,5 +101,11 @@ public class AdminController {
 	public void excelDown(@ModelAttribute MemberVO memberVO,
 			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		adminService.excelDown(memberVO, response);
+	}
+	
+	@GetMapping("/weekJoin")
+	public @ResponseBody String week() throws Exception {
+		Gson gson = new Gson();
+		return gson.toJson(adminService.getWeekMember());
 	}
 }

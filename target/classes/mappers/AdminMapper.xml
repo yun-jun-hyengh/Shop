@@ -85,8 +85,10 @@
 	
 	<!-- 주간 가입자 수 -->
 	<select id="getWeekMember" resultType="map">
-		select count(*) as cnt, date_format(joindata, '%Y-%m-%d') 
-		from member where joinData >= date_sub(now(), interval 7 day)
-		group by date_format(joindata, '%Y-%m-%d')
+		<![CDATA[
+			select count(*) as cnt, date_format(joindata, '%Y-%m-%d') as day
+			from member where joinData >= date_sub(now(), interval 7 day)
+			group by date_format(joindata, '%Y-%m-%d')
+		]]>
 	</select>
 </mapper>
