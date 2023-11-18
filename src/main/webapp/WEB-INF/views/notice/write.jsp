@@ -229,6 +229,8 @@
 	});
 </script>
 <script type="text/javascript">
+//$(document).on("click", "#writeBtn", function(e)
+//$(document).ready(function(e)
 	$(document).ready(function(e){
 		var regex = new RegExp("(.*/)\.(exe|sh|zip|alz)$");
 		var maxSize = 1024 * 1024 * 20; //20MB
