@@ -164,9 +164,9 @@
 										<td><textarea rows="10" cols="50" name="content" id="content" class="form-control"></textarea></td>
 									</tr>
 									<tr>
-										<td class="align-middle text-center">파일업로드</td>
+										<td class="align-middle text-center">첨부파일</td>
 										<!--  <td><input type="file" class="form-control" name="file" multiple="multiple"></td> -->
-										<td><button class="fileAdd_btn" type="button" onclick="fn_addFile()">파일추가</button></td>
+										<td><input name="multipartFiles" type="file" multiple/></td>
 									</tr>
 									<tr>
 										<td>
@@ -226,6 +226,49 @@
 				}
 			}
 		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(e){
+		var regex = new RegExp("(.*/)\.(exe|sh|zip|alz)$");
+		var maxSize = 1024 * 1024 * 20; //20MB
+		$("input[type='file']").change(function(e){
+			var formData = new FormData();
+			var $inputFile = $(this);
+			var files = $inputFile[0].files;
+			//console.log(files);
+			
+			for(let i = 0; i < files.length; i++){
+				if(!checkExtension(files[i].name, files[i].size)){
+					return false;
+				}
+				formData.append("multipartFiles", files[i]);
+			}
+			$.ajax({
+				url : "/shop/notice/noticeUpload",
+				processData: false,
+				contentType: false,
+				data: formData,
+				type: "post",
+				dataType: "json",
+				success: function(result){
+					alert("업로드 완료");
+				}
+			});
+		});
+		
+		function checkExtension(fileName, fileSize){
+			if(regex.test(fileName)){
+				alert("업로드 할 수 없는 파일 형식입니다.");
+				return false;
+			}
+			
+			if(fileSize >= maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			return true;
+		}
 	});
 </script>
 </html>
