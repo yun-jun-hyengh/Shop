@@ -229,6 +229,7 @@
 	});
 </script>
 <script type="text/javascript">
+	
 //$(document).on("click", "#writeBtn", function(e)
 //$(document).ready(function(e)
 	$(document).ready(function(e){
