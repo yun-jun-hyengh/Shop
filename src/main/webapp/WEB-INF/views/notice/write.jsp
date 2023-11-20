@@ -144,7 +144,7 @@
 		
 		<div id="layoutSidenav_content">
 			<main class="col-md-10 ms-sm-auto row">
-				<form class="col d-block" method="POST" enctype="multipart/form-data" id="frm">
+				<form class="col d-block" method="POST" enctype="multipart/form-data" id="frm" name="frm">
 					<div class="row ms-sm-auto">
 						<div class="col-md-2"></div>
 						<div class="col-md-8" style="width: 86.66666667%;">
@@ -253,6 +253,7 @@
 		var title = $("#title").val();
 		var writer = $("#writer").val();
 		var content = $("#content").val();
+		var $form = $(document.frm);
 		var str = "";
 		
 		if(title == ""){
@@ -268,8 +269,13 @@
 		$("#title").val(title);
 		$("#writer").val(writer);
 		$("#content").val(content);
-		//$("")
-		
+		$(".uploadResult ul li").each(function(i, li){
+			str += "<input type='hidden' name='files[" + i + "].uuid' value='" + $(li).data("uuid") +"'>";
+			str += "<input type='hidden' name='files[" + i + "].uploadPath' value='" + $(li).data("uploadpath") +"'>";
+			str += "<input type='hidden' name='files[" + i + "].fileName' value='" + $(li).data("filename") +"'>";
+			str += "<input type='hidden' name='files[" + i + "].fileType' value='" + $(li).data("filetype") +"'>";
+		});
+		$form.append(str);
 		var formData = $("#frm").serialize();
 		
 		$.ajax({
