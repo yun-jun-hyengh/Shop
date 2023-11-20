@@ -13,11 +13,13 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -176,5 +178,20 @@ public class NoticeController {
 	private boolean checkImageType(File file) throws Exception {
 		String contentType = Files.probeContentType(file.toPath());
 		return contentType.startsWith("image");
+	}
+	
+	@GetMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> display(String fileName){
+		File file = new File("C:/upload/" + fileName);
+		ResponseEntity<byte[]> result = null;
+		HttpHeaders header = new HttpHeaders();
+		try {
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

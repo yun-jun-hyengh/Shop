@@ -169,9 +169,8 @@
 										<td><input name="multipartFiles" type="file" multiple/></td>
 									</tr>
 									<tr>
-										<td>
-											<td id="fileIndex">
-											</td>
+										<td class="uploadResult">
+											<ul></ul>
 										</td>
 									</tr>
 									<tr>
@@ -193,10 +192,68 @@
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
 <script type="text/javascript">
+	var $uploadResult = $(".uploadResult ul");
+	var regex = new RegExp("(.*/)\.(exe|sh|zip|alz)$");
+	var maxSize = 1024 * 1024 * 20; //20MB
+	
+	function showUploadResult(files){
+		var str = "";
+		$(files).each(function(i, file){
+			if(!file.fileType){
+				str += "<li data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-filetype='" + file.fileType + "'>";
+				str += "<div>";
+				str += "<img src='${pageContext.request.contextPath}/resources/img/attach.png' width='100'>";
+				str += "</div>";
+				str += "<span>" + file.fileName + "</span>"
+				str += "</li>";
+				
+			}else{
+				var fileName = encodeURIComponent(file.uploadPath + "/t_" + file.uuid + "_" + file.fileName);
+				console.log(file.fileType);
+				str += "<li data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-filetype='" + file.fileType + "'>";
+				str += "<div>";
+				str += "<img src='/shop/notice/display?fileName=" + fileName + "' width='100'>";
+				str += "</div>";
+				str += "<span>" + file.fileName + "</span>"
+				str += "</li>";
+			}
+		});
+		$uploadResult.append(str);
+	}
+	
+	$("input[type='file']").change(function(e){
+		$(".uploadResult ul li").remove();
+		
+		var formData = new FormData();
+		var $inputFile = $(this);
+		var files = $inputFile[0].files;
+		//console.log(files);
+		
+		for(let i = 0; i < files.length; i++){
+			if(!checkExtension(files[i].name, files[i].size)){
+				return false;
+			}
+			formData.append("multipartFiles", files[i]);
+		}
+		$.ajax({
+			url : "/shop/notice/noticeUpload",
+			processData: false,
+			contentType: false,
+			data: formData,
+			type: "post",
+			dataType: "json",
+			success: function(result){
+				console.log(result);
+				showUploadResult(result);
+			}
+		});
+	});
+
 	$(document).on("click", "#writeBtn", function(e){
 		var title = $("#title").val();
 		var writer = $("#writer").val();
 		var content = $("#content").val();
+		var str = "";
 		
 		if(title == ""){
 			alert("제목을 입력해 주세요");
@@ -211,6 +268,7 @@
 		$("#title").val(title);
 		$("#writer").val(writer);
 		$("#content").val(content);
+		//$("")
 		
 		var formData = $("#frm").serialize();
 		
@@ -227,51 +285,18 @@
 			}
 		});
 	});
-</script>
-<script type="text/javascript">
 	
-//$(document).on("click", "#writeBtn", function(e)
-//$(document).ready(function(e)
-	$(document).ready(function(e){
-		var regex = new RegExp("(.*/)\.(exe|sh|zip|alz)$");
-		var maxSize = 1024 * 1024 * 20; //20MB
-		$("input[type='file']").change(function(e){
-			var formData = new FormData();
-			var $inputFile = $(this);
-			var files = $inputFile[0].files;
-			//console.log(files);
-			
-			for(let i = 0; i < files.length; i++){
-				if(!checkExtension(files[i].name, files[i].size)){
-					return false;
-				}
-				formData.append("multipartFiles", files[i]);
-			}
-			$.ajax({
-				url : "/shop/notice/noticeUpload",
-				processData: false,
-				contentType: false,
-				data: formData,
-				type: "post",
-				dataType: "json",
-				success: function(result){
-					alert("업로드 완료");
-				}
-			});
-		});
-		
-		function checkExtension(fileName, fileSize){
-			if(regex.test(fileName)){
-				alert("업로드 할 수 없는 파일 형식입니다.");
-				return false;
-			}
-			
-			if(fileSize >= maxSize){
-				alert("파일 사이즈 초과");
-				return false;
-			}
-			return true;
+	function checkExtension(fileName, fileSize){
+		if(regex.test(fileName)){
+			alert("업로드 할 수 없는 파일 형식입니다.");
+			return false;
 		}
-	});
+		
+		if(fileSize >= maxSize){
+			alert("파일 사이즈 초과");
+			return false;
+		}
+		return true;
+	}
 </script>
 </html>

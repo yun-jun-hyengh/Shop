@@ -1,6 +1,7 @@
 package com.shopping.shop.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class NoticeVO {
 	private int bno; // 게시글 번호
@@ -9,6 +10,7 @@ public class NoticeVO {
 	private String writer; // 글 작성자
 	private Date regdate; // 작성일자 
 	private int hit; // 조회수 
+	private List<NoticeFileVO> files;
 	public int getBno() {
 		return bno;
 	}
@@ -45,6 +47,10 @@ public class NoticeVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	
-	
+	public List<NoticeFileVO> getFiles() {
+		return files;
+	}
+	public void setFiles(List<NoticeFileVO> files) {
+		this.files = files;
+	}
 }
