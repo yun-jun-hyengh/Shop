@@ -69,12 +69,10 @@
 									<div class="text-break" style="white-space: pre-line;">
 										${noticeVO.content}</div>
 								</font>
-							</p> <!--<c:forEach var="file" items="${freefile}">
-								<img src="/img/${file.STORED_FILE_NAME}">
-								<br>
-
-							</c:forEach> -->
-
+							</p>
+							<div class="uploadResult">
+								<ul></ul>
+							</div> 
 						</td>
 					</tr>
 
@@ -192,6 +190,18 @@
 				success : function(data) {
 					//console.log(data);
 					if (data == "success") {
+						$(".uploadResult ul li").each(function(i, li){
+							var fileName = encodeURIComponent($(li).data("filetype") ? $(li).data("uploadpath") + "/t_" + $(li).data("uuid") + "_" + $(li).data("filename") : 
+								$(li).data("uploadpath") + "/" + $(li).data("uuid") + "_" + $(li).data("filename"));
+							$.ajax({
+								url: "/shop/notice/deleteFile",
+								type: "post",
+								data: {fileName: fileName, fileType: $(li).data("fileType")},
+								success: function(){
+									
+								}
+							});
+						});
 						alert("게시글 삭제가 완료되었습니다.");
 						location.href = "/shop/notice/noticelist?page=${fCri.page}"
 										+ "&numPerPage=${fCri.numPerPage}"
@@ -320,5 +330,43 @@
 			}
 		});
 	});
+	
+	
+	// 첨부파일
+	$(document).ready(function(e){
+		var $uploadResult = $(".uploadResult ul");
+		
+		$.getJSON("/shop/notice/files", {bno: "${noticeVO.bno}"}, function(files){
+			showUploadResult(files);
+		});
+		
+		function showUploadResult(files){
+			var str = "";
+			
+			$(files).each(function(i, file){
+				
+				if(!file.fileType){
+					str += "<li data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-filetype='" + file.fileType + "'>";
+					str += "<div>";
+					str += "<img src='${pageContext.request.contextPath}/resources/img/attach.png' width='300' height='300'>";
+					str += "</div>";
+					str += "<span>" + file.fileName + "</span>"
+					str += "</li>";
+					
+				}else{
+					var fileName = encodeURIComponent(file.uploadPath + "/t_" + file.uuid + "_" + file.fileName);
+					console.log(file.fileType);
+					str += "<li data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-filetype='" + file.fileType + "'>";
+					str += "<div>";
+					str += "<img src='/shop/notice/display?fileName=" + fileName + "' width='300' height='300'>";
+					str += "</div>";
+					str += "<span>" + file.fileName + "</span>"
+					str += "</li>";
+				}
+			});
+			$uploadResult.append(str);
+		}
+	});
+	
 </script>
 </html>

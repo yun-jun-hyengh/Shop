@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -193,5 +195,31 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	// 첨부파일 전체 목록 
+	@GetMapping(value="/files", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public List<NoticeFileVO> getFiles(int bno) throws Exception {
+		return noticeService.getFiles(bno);
+	}
+	
+	@PostMapping("/deleteFile")
+	@ResponseBody
+	public void delete(@RequestParam("fileName") String fileName, @RequestParam("fileType") boolean fileType) {
+		File file = null;
+		try {
+			file = new File("C:/upload/" + URLDecoder.decode(fileName, "UTF-8"));
+			System.gc();
+			System.runFinalization();
+			
+			file.delete();
+			if(fileType) {
+				file = new File(file.getPath().replace("t_", ""));
+				file.delete();
+			}
+		} catch(UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 }

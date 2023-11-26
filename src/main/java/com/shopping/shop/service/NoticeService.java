@@ -3,6 +3,7 @@ package com.shopping.shop.service;
 import java.util.List;
 
 import com.shopping.shop.vo.FindCriteria;
+import com.shopping.shop.vo.NoticeFileVO;
 import com.shopping.shop.vo.NoticeVO;
 
 public interface NoticeService {
@@ -18,4 +19,6 @@ public interface NoticeService {
 	public int noticeDelete(int bno) throws Exception;
 	
 	public void noticeUpdate(NoticeVO vo) throws Exception;
+	
+	public List<NoticeFileVO> getFiles(int bno) throws Exception;
 }

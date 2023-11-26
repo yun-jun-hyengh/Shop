@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shopping.shop.vo.FindCriteria;
+import com.shopping.shop.vo.NoticeFileVO;
 import com.shopping.shop.vo.NoticeVO;
 
 @Mapper
@@ -22,4 +23,6 @@ public interface NoticeMapper {
 	public int noticeDelete(int bno) throws Exception;
 	
 	public void noticeUpdate(NoticeVO vo) throws Exception;
+	
+	public List<NoticeFileVO> getFiles(int bno) throws Exception;
 }

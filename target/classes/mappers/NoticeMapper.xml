@@ -66,4 +66,9 @@
 		</if>
 	</sql>
 	
+	<select id="getFiles" resultType="com.shopping.shop.vo.NoticeFileVO">
+		select uuid, uploadPath, fileName, fileType from noticeFile
+		where bno = #{bno}
+	</select>
+	
 </mapper>

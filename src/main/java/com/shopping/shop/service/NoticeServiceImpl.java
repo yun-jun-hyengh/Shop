@@ -65,4 +65,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.noticeFindCountData(findCri);
 	}
 
+	@Override
+	public List<NoticeFileVO> getFiles(int bno) throws Exception {
+		return noticeMapper.getFiles(bno);
+	}
+
 }
