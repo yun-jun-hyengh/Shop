@@ -173,14 +173,13 @@
 										<td><textarea rows="10" cols="50" name="content" id="content" class="form-control"><c:out value="${noticeVO.content}"/></textarea></td>
 									</tr>
 									<tr>
-										<td class="align-middle text-center">파일업로드</td>
+										<td class="align-middle text-center">첨부파일</td>
 										<!--  <td><input type="file" class="form-control" name="file" multiple="multiple"></td> -->
-										<td><button class="fileAdd_btn" type="button" onclick="fn_addFile()">파일추가</button></td>
+										<td><input name="multipartFiles" type="file" multiple/></td>
 									</tr>
 									<tr>
-										<td>
-											<td id="fileIndex">
-											</td>
+										<td class="uploadResult">
+											<ul id='file'></ul>
 										</td>
 									</tr>
 									<tr>
