@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shopping.shop.quartz.VisitQuartzService">
+<mapper namespace="com.shopping.shop.mapper.VisitQuartzMapper">
 	<!-- 한달전 데이터 삭제 -->
-	<delete id="visitDelete" parameterType="com.shopping.shop.vo.VisitCountVO">
+	<delete id="visitDelete">
 		<![CDATA[
 			delete from tb_visitor
 			where visit_time <= date_sub(now(), interval 1 month)
