@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.shopping.shop.vo.CateVO;
 import com.shopping.shop.vo.FindCriteria;
 import com.shopping.shop.vo.MemberVO;
 import com.shopping.shop.vo.PageCriteria;
@@ -30,4 +31,6 @@ public interface AdminMapper {
 	public int getTodayMember() throws Exception;
 	
 	public List<Map<String, Object>> getWeekMember() throws Exception;
+	
+	public List<CateVO> cateList() throws Exception;
 }

@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shopping.shop.mapper.AdminMapper;
+import com.shopping.shop.vo.CateVO;
 import com.shopping.shop.vo.FindCriteria;
 import com.shopping.shop.vo.MemberVO;
 import com.shopping.shop.vo.PageCriteria;
@@ -170,6 +171,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, Object>> getWeekMember() throws Exception {
 		return adminMapper.getWeekMember();
+	}
+
+	@Override
+	public List<CateVO> cateList() throws Exception {
+		return adminMapper.cateList();
 	}
 
 }

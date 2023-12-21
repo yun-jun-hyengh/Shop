@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.shopping.shop.service.AdminService;
 import com.shopping.shop.service.VisitCountService;
+import com.shopping.shop.vo.CateVO;
 import com.shopping.shop.vo.FindCriteria;
 import com.shopping.shop.vo.MemberVO;
 import com.shopping.shop.vo.PageCriteria;
@@ -107,5 +109,16 @@ public class AdminController {
 	public @ResponseBody String week() throws Exception {
 		Gson gson = new Gson();
 		return gson.toJson(adminService.getWeekMember());
+	}
+	
+	// 카테고리 등록 페이지 
+	@GetMapping("/cateRegister")
+	public String cateRegister(Model model) throws Exception {
+		ObjectMapper obj = new ObjectMapper();
+		List<CateVO> list = adminService.cateList();
+		String cateList = obj.writeValueAsString(list);
+		model.addAttribute("cateList", cateList);
+		//System.out.println("데이뚠 데이터 : " + cateList);
+		return "admin/cateRegister";
 	}
 }

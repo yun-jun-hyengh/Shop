@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.shopping.shop.vo.CateVO;
 import com.shopping.shop.vo.FindCriteria;
 import com.shopping.shop.vo.MemberVO;
 import com.shopping.shop.vo.PageCriteria;
@@ -29,4 +30,6 @@ public interface AdminService {
 	public int getTodayMember() throws Exception;
 	
 	public List<Map<String, Object>> getWeekMember() throws Exception;
+	
+	public List<CateVO> cateList() throws Exception;
 }

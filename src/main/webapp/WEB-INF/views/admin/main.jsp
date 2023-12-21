@@ -74,6 +74,9 @@
                             <a class="nav-link" href="tables.html">
                                 	팝업등록
                             </a>
+                            <a class="nav-link" href="/shop/admin/cateRegister">
+                                	카테고리등록
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
