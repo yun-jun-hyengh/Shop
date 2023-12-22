@@ -64,11 +64,11 @@
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a class="nav-link collapsed" href="/shop/product/productRegister">
                                 	상품등록	
                             </a>
                             
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="#">
                                 	상품목록
                             </a>
                             <a class="nav-link" href="tables.html">
