@@ -115,7 +115,63 @@
 						</ul>
 					</div>
 				</div>
+				<hr><p>
+				<div class="row">
+					<div class="col-12">
+						<h3>카테고리 등록</h3>
+						<table class="table table-striped">
+							<tr>
+								<td class="align-middle text-center">대분류</td>
+								<td>
+									<select id="selectbox" name="cateName" class="form-control">
+										<option selected value="none">선택</option>
+										<option value="direct">직접입력</option>
+									</select><br>
+									<input type="text" class="form-control" name="cateName" id="selectboxDirect">
+								</td>
+								<td colspan="1">
+									<input class="btn btn-success btn-block" type="button" value="등록" id="login_button">
+								</td>
+							</tr>
+							<tr>
+								<td class="align-middle text-center">중분류</td>
+								<td>
+									<input type="text" class="form-control" name="cateName" id="cateName1">
+								</td>
+								<td colspan="1">
+									<input class="btn btn-success btn-block" type="button" value="등록" id="login_button">
+								</td>
+							</tr>
+							<tr>
+								<td class="align-middle text-center">소분류</td>
+								<td>
+									<input type="text" class="form-control" name="cateName" id="cateName2">
+								</td>
+								<td colspan="1">
+									<input class="btn btn-success btn-block" type="button" value="등록" id="login_button">
+								</td>
+							</tr>
+							<!--  <tr>
+								<td></td>
+								<td align="center"><input class="btn btn-success btn-block" type="button" value="카테고리 등록" id="login_button"></td>
+							</tr> -->
+						</table>
+					</div>
+				</div>
 			</div>
+			
+			<footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
 		</div>
 </body>
 <script
@@ -135,6 +191,8 @@
 	let cate1 = $(".cate1"); // 대분류
 	let cate2 = $(".cate2"); // 중분류
 	let cate3 = $(".cate3"); // 소분류
+	
+	let selectbox = $("#selectbox");
 	
 	function makeCateArray(obj, array, cateList, tier){
 		for(let i = 0; i < cateList.length; i++){
@@ -163,5 +221,28 @@
 	for(let i = 0; i < cate1Array.length; i++){
 		cate1.append("<li class='list-group-item'>" + cate1Array[i].cateName + "</li>");
 	}
+	
+	for(let i = 0; i < cate2Array.length; i++){
+		cate2.append("<li class='list-group-item'>" + cate2Array[i].cateName + "(" + cate2Array[i].cateParent1 + ")" + "</li>");
+	}
+	
+	for(let i = 0; i < cate3Array.length; i++){
+		cate3.append("<lis class='list-group-item'>" + cate3Array[i].cateName + "(" + cate3Array[i].cateParent1 + ")" + "</li>");
+	}
+	
+	for(let i = 0; i < cate1Array.length; i++){
+		selectbox.append("<option name='cateName'>" + cate1Array[i].cateName + "</option>");
+	}
+	
+	$(function(){
+		$("#selectboxDirect").hide();
+		$("#selectbox").change(function(){
+			if($("#selectbox").val() == "direct"){
+				$("#selectboxDirect").show();
+			} else {
+				$("#selectboxDirect").hide();
+			}
+		});
+	});
 </script>
 </html>
