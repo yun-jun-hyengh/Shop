@@ -125,36 +125,39 @@ public class AdminController {
 	@PostMapping("/cate1")
 	@ResponseBody
 	public String cate1(CateVO catevo) throws Exception {
-		int tier = catevo.getTier();
-		String cateName = catevo.getCateName();
-		System.out.println(tier);
-		System.out.println(cateName);
-		return "success";
+		String message = "";
+		int num = adminService.cate1(catevo);
+		if(num == 1) {
+			message = "success";
+		} else {
+			System.out.println("실패");
+		}
+		return message;
 	}
 	
 	@PostMapping("/cate2")
 	@ResponseBody
 	public String cate2(CateVO catevo) throws Exception {
-		int tier = catevo.getTier();
-		String cateName = catevo.getCateName();
-		String cateParent1 = catevo.getCateParent1();
-		System.out.println(tier);
-		System.out.println(cateName);
-		System.out.println(cateParent1);
-		return "success";
+		String message = "";
+		int num = adminService.cate2(catevo);
+		if(num == 1) {
+			message = "success";
+		} else {
+			System.out.println("실패");
+		}
+		return message;
 	}
 	
 	@PostMapping("/cate3")
 	@ResponseBody
 	public String cate3(CateVO catevo) throws Exception {
-		int tier = catevo.getTier();
-		String cateName = catevo.getCateName();
-		String cateParent1 = catevo.getCateParent1();
-		String cateParent2 = catevo.getCateParent2();
-		System.out.println(tier);
-		System.out.println(cateName);
-		System.out.println(cateParent1);
-		System.out.println(cateParent2);
-		return "success";
+		String message = "";
+		int num = adminService.cate3(catevo);
+		if(num == 1) {
+			message = "success";
+		} else {
+			System.out.println("실패");
+		}
+		return message;
 	}
 }

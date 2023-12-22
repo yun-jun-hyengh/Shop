@@ -264,7 +264,10 @@
 							cateName : category1
 						},
 						success : function(data){
-							console.log(data);
+							//console.log(data);
+							if(data == "success"){
+								alert("1차 카테고리 등록 완료");
+							}
 						}
 					});
 				}
@@ -280,7 +283,10 @@
 						cateName : category1
 					},
 					success : function(data){
-						console.log(data);
+						//console.log(data);
+						if(data == "success"){
+							alert("1차 카테고리 등록 완료");
+						}
 					}
 				});
 			}
@@ -304,7 +310,10 @@
 						cateParent1 : category1
 					},
 					success : function(data){
-						console.log(data);
+						//console.log(data);
+						if(data == "success"){
+							alert("2차 카테고리 등록 완료");
+						}
 					}
 				});
 			}
@@ -331,7 +340,10 @@
 						cateParent2 : category2
 					},
 					success : function(data){
-						console.log(data);
+						//console.log(data);
+						if(data == "success"){
+							alert("3차 카테고리 등록 완료");
+						}
 					}
 				});
 			}
