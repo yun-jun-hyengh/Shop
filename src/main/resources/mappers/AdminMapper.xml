@@ -100,18 +100,18 @@
 	<!-- 1차 카테고리 -->
 	<insert id="cate1">
 		insert into category(tier, cateName)
-		values(1, #{cateName})
+		values(#{tier}, #{cateName})
 	</insert>
 	
 	<!-- 2차 카테고리 -->
 	<insert id="cate2">
 		insert into category(tier, cateName, cateParent1)
-		values(2, #{cateName}, #{cateParent1})
+		values(#{tier}, #{cateName}, #{cateParent1})
 	</insert>
 	
 	<!-- 3차 카테고리 -->
 	<insert id="cate3">
 		insert into category(tier, cateName, cateParent1, cateParent2)
-		values(3, #{cateName}, #{cateParent1}, #{cateParent2})
+		values(#{tier}, #{cateName}, #{cateParent1}, #{cateParent2})
 	</insert>
 </mapper>

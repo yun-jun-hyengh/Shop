@@ -135,12 +135,19 @@ public class AdminController {
 	@PostMapping("/cate2")
 	@ResponseBody
 	public String cate2(CateVO catevo) throws Exception {
-		return "";
+		int tier = catevo.getTier();
+		String cateName = catevo.getCateName();
+		String cateParent1 = catevo.getCateParent1();
+		System.out.println(tier);
+		System.out.println(cateName);
+		System.out.println(cateParent1);
+		return "success";
 	}
 	
 	@PostMapping("/cate3")
 	@ResponseBody
 	public String cate3(CateVO catevo) throws Exception {
+		
 		return "";
 	}
 }

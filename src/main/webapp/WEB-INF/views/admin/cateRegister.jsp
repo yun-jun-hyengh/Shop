@@ -235,10 +235,10 @@
 	}
 	
 	$(function(){
-		//var selectboxDirect = "";
 		var category1 = "";
 		var category2 = "";
 		var category3 = "";
+		//var selectboxDirect = "";
 		$("#selectboxDirect").hide();
 		$("#selectbox").change(function(){
 			if($("#selectbox").val() == "direct"){
@@ -288,13 +288,27 @@
 		
 		$("#cate2_btn").click(function(){
 			//alert("2번클릭됨")
+			if(category1 === ""){
+				alert("1차 카데고리를 추가해 주세요");
+			} else {
+				category2 = $("#cateName1").val();
+				console.log(category2);
+			}
 		});
 		
 		$("#cate3_btn").click(function(){
 			//alert("3번클릭됨")
+			if(category1 === "" && category2 === ""){
+				alert("1차 카데고리와 2차 카테고리를 추가해 주세요");
+			} else if(category2 === ""){
+				alert("2차 카테고리를 추가해 주세요");
+			} else if(category1 === ""){
+				alert("1차 카테고리를 추가해 주세요");
+			} else {
+				category3 = $("#cateName2").val();
+				console.log(category3);	
+			}
 		});
 	});
-	
-	
 </script>
 </html>
