@@ -288,16 +288,31 @@
 		
 		$("#cate2_btn").click(function(){
 			//alert("2번클릭됨")
+			category2 = $("#cateName1").val();
 			if(category1 === ""){
 				alert("1차 카데고리를 추가해 주세요");
+			} else if(category2 === ""){
+				alert("2차 카테고리를 추가해 주세요");
 			} else {
-				category2 = $("#cateName1").val();
-				console.log(category2);
+				//console.log(category2);
+				$.ajax({
+					url : "/shop/admin/cate2",
+					type : "post",
+					data : {
+						tier : 2,
+						cateName : category2,
+						cateParent1 : category1
+					},
+					success : function(data){
+						console.log(data);
+					}
+				});
 			}
 		});
 		
 		$("#cate3_btn").click(function(){
 			//alert("3번클릭됨")
+			category3 = $("#cateName2").val();
 			if(category1 === "" && category2 === ""){
 				alert("1차 카데고리와 2차 카테고리를 추가해 주세요");
 			} else if(category2 === ""){
@@ -305,8 +320,20 @@
 			} else if(category1 === ""){
 				alert("1차 카테고리를 추가해 주세요");
 			} else {
-				category3 = $("#cateName2").val();
-				console.log(category3);	
+				//console.log(category3);	
+				$.ajax({
+					url : "/shop/admin/cate3",
+					type : "post",
+					data : {
+						tier : 3,
+						cateName : category3,
+						cateParent1 : category1,
+						cateParent2 : category2
+					},
+					success : function(data){
+						console.log(data);
+					}
+				});
 			}
 		});
 	});

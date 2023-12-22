@@ -147,7 +147,14 @@ public class AdminController {
 	@PostMapping("/cate3")
 	@ResponseBody
 	public String cate3(CateVO catevo) throws Exception {
-		
-		return "";
+		int tier = catevo.getTier();
+		String cateName = catevo.getCateName();
+		String cateParent1 = catevo.getCateParent1();
+		String cateParent2 = catevo.getCateParent2();
+		System.out.println(tier);
+		System.out.println(cateName);
+		System.out.println(cateParent1);
+		System.out.println(cateParent2);
+		return "success";
 	}
 }
