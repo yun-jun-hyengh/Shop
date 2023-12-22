@@ -178,4 +178,19 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.cateList();
 	}
 
+	@Override
+	public int cate1(CateVO catevo) throws Exception {
+		return adminMapper.cate1(catevo);
+	}
+
+	@Override
+	public int cate2(CateVO catevo) throws Exception {
+		return adminMapper.cate2(catevo);
+	}
+
+	@Override
+	public int cate3(CateVO catevo) throws Exception {
+		return adminMapper.cate3(catevo);
+	}
+
 }

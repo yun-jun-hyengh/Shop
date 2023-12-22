@@ -121,4 +121,26 @@ public class AdminController {
 		//System.out.println("데이뚠 데이터 : " + cateList);
 		return "admin/cateRegister";
 	}
+	
+	@PostMapping("/cate1")
+	@ResponseBody
+	public String cate1(CateVO catevo) throws Exception {
+		int tier = catevo.getTier();
+		String cateName = catevo.getCateName();
+		System.out.println(tier);
+		System.out.println(cateName);
+		return "success";
+	}
+	
+	@PostMapping("/cate2")
+	@ResponseBody
+	public String cate2(CateVO catevo) throws Exception {
+		return "";
+	}
+	
+	@PostMapping("/cate3")
+	@ResponseBody
+	public String cate3(CateVO catevo) throws Exception {
+		return "";
+	}
 }

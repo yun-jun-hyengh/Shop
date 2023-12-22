@@ -32,4 +32,10 @@ public interface AdminService {
 	public List<Map<String, Object>> getWeekMember() throws Exception;
 	
 	public List<CateVO> cateList() throws Exception;
+	
+	public int cate1(CateVO catevo) throws Exception;
+	
+	public int cate2(CateVO catevo) throws Exception;
+	
+	public int cate3(CateVO catevo) throws Exception;
 }

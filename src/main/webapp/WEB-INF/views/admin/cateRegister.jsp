@@ -123,32 +123,32 @@
 							<tr>
 								<td class="align-middle text-center">대분류</td>
 								<td>
-									<select id="selectbox" name="cateName" class="form-control">
+									<select id="selectbox" class="form-control">
 										<option selected value="none">선택</option>
 										<option value="direct">직접입력</option>
 									</select><br>
-									<input type="text" class="form-control" name="cateName" id="selectboxDirect">
+									<input type="text" class="form-control" id="selectboxDirect">
 								</td>
 								<td colspan="1">
-									<input class="btn btn-success btn-block" type="button" value="등록" id="login_button">
+									<input class="btn btn-success btn-block" type="button" value="등록" id="cate1_btn">
 								</td>
 							</tr>
 							<tr>
 								<td class="align-middle text-center">중분류</td>
 								<td>
-									<input type="text" class="form-control" name="cateName" id="cateName1">
+									<input type="text" class="form-control" id="cateName1">
 								</td>
 								<td colspan="1">
-									<input class="btn btn-success btn-block" type="button" value="등록" id="login_button">
+									<input class="btn btn-success btn-block" type="button" value="등록" id="cate2_btn">
 								</td>
 							</tr>
 							<tr>
 								<td class="align-middle text-center">소분류</td>
 								<td>
-									<input type="text" class="form-control" name="cateName" id="cateName2">
+									<input type="text" class="form-control" id="cateName2">
 								</td>
 								<td colspan="1">
-									<input class="btn btn-success btn-block" type="button" value="등록" id="login_button">
+									<input class="btn btn-success btn-block" type="button" value="등록" id="cate3_btn">
 								</td>
 							</tr>
 							<!--  <tr>
@@ -231,10 +231,14 @@
 	}
 	
 	for(let i = 0; i < cate1Array.length; i++){
-		selectbox.append("<option name='cateName'>" + cate1Array[i].cateName + "</option>");
+		selectbox.append("<option id='cateName'>" + cate1Array[i].cateName + "</option>");
 	}
 	
 	$(function(){
+		//var selectboxDirect = "";
+		var category1 = "";
+		var category2 = "";
+		var category3 = "";
 		$("#selectboxDirect").hide();
 		$("#selectbox").change(function(){
 			if($("#selectbox").val() == "direct"){
@@ -243,6 +247,54 @@
 				$("#selectboxDirect").hide();
 			}
 		});
+		
+		$("#cate1_btn").click(function(){
+			if($("#selectbox").val() == "direct" || $("#selectbox").val() == "직접입력" || $("#selectbox").val() == "none"){
+				selectboxDirect = $("#selectboxDirect").val();
+				if(selectboxDirect === ""){
+					alert("대분류 카테고리를 직접 기재해 주세요!!");
+				} else {
+					//console.log(selectboxDirect);	
+					category1 = selectboxDirect;
+					$.ajax({
+						url : "/shop/admin/cate1",
+						type : "post",
+						data : {
+							tier : 1,
+							cateName : category1
+						},
+						success : function(data){
+							console.log(data);
+						}
+					});
+				}
+			} else {
+				var selectbox = $("#selectbox").val();
+				//console.log(selectbox);
+				category1 = selectbox;
+				$.ajax({
+					url : "/shop/admin/cate1",
+					type : "post",
+					data : {
+						tier : 1,
+						cateName : category1
+					},
+					success : function(data){
+						console.log(data);
+					}
+				});
+			}
+		});
+		
+		$("#cate2_btn").click(function(){
+			//alert("2번클릭됨")
+		});
+		
+		$("#cate3_btn").click(function(){
+			//alert("3번클릭됨")
+		});
 	});
+	
+	
 </script>
 </html>
