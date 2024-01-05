@@ -76,6 +76,15 @@
                                     <a href="#">고객센터</a>
                                     
                                 </c:if>    
+                                
+                                <c:if test="${userId ne null}">
+                            
+                                	<a href="/shop/member/mypage">마이페이지  </a>
+                                    <a style="cursor:pointer;" id="logout_button">로그아웃  </a>
+                                    <a href="#">장바구니  </a>
+                                    <a href="#">고객센터</a>
+                                    
+                                </c:if>    
                                 </div>
                             </div>
                             <!--End of col-md-4-->
