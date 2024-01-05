@@ -61,6 +61,14 @@
 		</div>
 		
 		<div class="form-group">
+			<div class="col-sm-12 text-left">
+				<a class="btn btn-block" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b46f32de6a278176d725a43658dc9b68&redirect_uri=http://localhost:10000/shop/oauth/kakao&response_type=code">
+					<img src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_wide.png">
+				</a><br>
+			</div>
+		</div>
+		
+		<div class="form-group">
 			<div class="col-sm-12 text-center">
 				<a style="cursor:pointer;" id="findIdBtn">아이디 찾기</a>&nbsp;&nbsp;
 				<a style="cursor:pointer;" id="findPwBtn">비밀번호 찾기</a>&nbsp;&nbsp;
