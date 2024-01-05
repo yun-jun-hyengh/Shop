@@ -97,6 +97,7 @@ public class KakaoAPI {
 			
 			int id = ((JsonObject) element).get("id").getAsInt();
 			String idVal = String.valueOf(id);
+			System.out.println("idVal : " + idVal);
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			//String email = kakao_account.getAsJsonObject().get("email").getAsString();
 			

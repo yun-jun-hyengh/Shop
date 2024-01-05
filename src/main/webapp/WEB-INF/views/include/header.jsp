@@ -115,7 +115,7 @@
                                     </c:if>
                                     
                                     <c:if test="${userId ne null}">
-                                    	<li><a>${userId}</a></li>
+                                    	<li><a>${userId.nickname}, ${userId.email }</a></li>
                                     </c:if>
                                 </ul>
                             </div>
