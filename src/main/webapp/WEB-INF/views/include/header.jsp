@@ -60,13 +60,13 @@
                             <!--End of col-md-4-->
                             <div class="col-md-4">
                                 <div class="social_icon text-right">
-                                <c:if test="${member == null}">
+                                <c:if test="${member == null && userId eq null}">
                                     <a href="/shop/member/login">로그인  </a>
                                     <a href="/shop/member/useSuccess">회원가입  </a>
                                     <a href="#">장바구니  </a>
                                     <a href="#">고객센터  </a>
                                 </c:if>
-                                <c:if test="${member != null}">
+                                <c:if test="${member != null || userId ne null}">
                                 	<c:if test="${member.adminCk == 1}">
                                 		<a href="/shop/admin/adminMain">관리자페이지</a>
                                 	</c:if>
@@ -77,14 +77,7 @@
                                     
                                 </c:if>    
                                 
-                                <c:if test="${userId ne null}">
-                            
-                                	<a href="/shop/member/mypage">마이페이지  </a>
-                                    <a style="cursor:pointer;" id="logout_button">로그아웃  </a>
-                                    <a href="#">장바구니  </a>
-                                    <a href="#">고객센터</a>
-                                    
-                                </c:if>    
+                                
                                 </div>
                             </div>
                             <!--End of col-md-4-->
@@ -119,6 +112,10 @@
                                     <li><a href="#">event</a></li>
                                     <c:if test="${member != null}">
                                     	<li><a>${member.memberName}(${member.codeName})&nbsp;&nbsp; |&nbsp;&nbsp; ${member.point} (point)</a></li>
+                                    </c:if>
+                                    
+                                    <c:if test="${userId ne null}">
+                                    	<li><a>${userId}</a></li>
                                     </c:if>
                                 </ul>
                             </div>

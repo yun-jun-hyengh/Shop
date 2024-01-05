@@ -29,7 +29,7 @@ public class KakaoController {
 		System.out.println("controller access_token : " + access_Token);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
 		if(userInfo.get("email") != null) {
-			session.setAttribute("userId", userInfo.get("email"));
+			session.setAttribute("userId", userInfo.get("nickname"));
 			session.setAttribute("access_Token", access_Token);
 		}
 		return "redirect:/";

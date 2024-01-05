@@ -108,4 +108,10 @@ public class KakaoAPI {
 		
 		return userInfo;
 	}
+	
+	public void kakaoLogout(String access_Token) {
+		String reqURL = "https://kapi.kakao.com/v1/user/logout";
+		
+		
+	}
 }
