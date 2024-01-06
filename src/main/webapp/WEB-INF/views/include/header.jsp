@@ -71,7 +71,12 @@
                                 		<a href="/shop/admin/adminMain">관리자페이지</a>
                                 	</c:if>
                                 	<a href="/shop/member/mypage">마이페이지  </a>
-                                    <a style="cursor:pointer;" id="logout_button">로그아웃  </a>
+                                	<c:if test="${member != null}">
+                                    	<a style="cursor:pointer;" id="logout_button">로그아웃  </a>
+                                    </c:if>
+                                    <c:if test="${userId ne null}">
+                                    	<a style="cursor:pointer;" href="/shop/oauth/logout">로그아웃  </a>
+                                    </c:if>
                                     <a href="#">장바구니  </a>
                                     <a href="#">고객센터</a>
                                     
