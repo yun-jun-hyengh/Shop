@@ -36,5 +36,11 @@ public class KakaoController {
 		return "redirect:/";
 	}
 	
-	
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session) {
+		kakao.kakaoLogout((String) session.getAttribute("access_Token"));
+		session.removeAttribute("access_Token");
+		session.removeAttribute("userId");
+		return "redirect:/";
+	}
 }

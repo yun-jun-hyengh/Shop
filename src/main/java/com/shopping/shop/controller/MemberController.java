@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shopping.shop.service.KakaoAPI;
 import com.shopping.shop.service.MemberService;
 import com.shopping.shop.vo.MemberVO;
 
