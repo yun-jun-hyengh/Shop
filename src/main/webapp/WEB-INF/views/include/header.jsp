@@ -64,7 +64,7 @@
                                     <a href="/shop/member/login">로그인  </a>
                                     <a href="/shop/member/useSuccess">회원가입  </a>
                                     <a href="#">장바구니  </a>
-                                    <a href="#">고객센터  </a>
+                                    <a href="/shop/center/centerList">고객센터  </a>
                                 </c:if>
                                 <c:if test="${member != null || userId ne null}">
                                 	<c:if test="${member.adminCk == 1}">
@@ -78,7 +78,7 @@
                                     	<a style="cursor:pointer;" href="/shop/oauth/logout">로그아웃  </a>
                                     </c:if>
                                     <a href="#">장바구니  </a>
-                                    <a href="#">고객센터</a>
+                                    <a href="/shop/center/centerList">고객센터</a>
                                     
                                 </c:if>    
                                 
